@@ -19,14 +19,11 @@ Se presenta en esta página un resumen de lo más resaltante a tener en cuenta e
 = Parámetros a variar (Px) = 
 
   # *Tamaño del Bloque:* tiene influencia fundamentalmente en las lecturas. Cómo no se puede variar online, se probará con el valor máximo (4Kb) y con el valor mínimo (1Kb)
-
   # *Nivel de journaling:* Influye sobre todos en las escrituras. Se trata del nivel con el que las transacciones del filesystem serán protegidas para la recuperación, a través del archivo de journal.
 {{{ 
      tune2fs: # tune2fs -O has_journal -o journal_data /dev/hdXY
 }}}
-
   # *Sync Interval:* intervalo de tiempo entre cada sincronización del journal con los archivos reales. Se puede cambiar al montar el sistema de archivos utilizando -o commit=Nsec.  A mayores valores de tiempo, se mejora el rendimiento porque se reduce la sobrecarga de operaciones del sistema de archivos, sin embargo, se pierde en confiabilidad ante fallos del sistema. Influye en operaciones de escritura
-
   # *Eliminar la actualización del access time:* influye en lecturas. Consiste en la actualización de este atributo ante cada acceso al archivo.
 {{{
 Se puede manipular editando /etc/fstab con lo siguiente: 
@@ -35,29 +32,34 @@ Se puede manipular editando /etc/fstab con lo siguiente:
 
 = Operaciones Básicas =
 
-  _Operaciones_         _Abreviatura_
+  _Operaciones_         _Abreviatura_      _Responsable_      _Estado_
 
-  # Crear Archivo.      *(CA)*
-  # Leer Archivo.       *(LA)*
+  # Crear Archivo.      *(CA)*             fmancia            terminado
+{{{
+    void crear_archivos(int n, long long  cbytes, char * patron);
+}}}
+  # Leer Archivo.       *(LA)*             mrodas             
     ## Secuencialmente. 
     ## Aleatoriamente.
-  # Escribir Archivo.   *(EA)*
+  # Escribir Archivo.   *(EA)*             mrodas             
     ## Secuencialmente.
     ## Aleatoriamente.
-  # Buscar Archivo.     *(BA)*
-  # Borrar Archivo.     *(DA)*  
+  # Buscar Archivo.     *(BA)*             cparra             
+  # Borrar Archivo.     *(DA)*             mrodas            
 {{{     
-       La D ese de Delete 
+       La D es de Delete 
 }}}
-  # Crear Directorio.   *(CD)*
-  # Borrar Directorio.  *(BD)*
+  # Crear Directorio.   *(CD)*             cparra             
+  # Borrar Directorio.  *(BD)*             cparra
+
+   _*Obs:*_ Todas las operaciones básicas, deben ser implementadas en *_primitivas.c_*
 
 = Operaciones considerando las cargas (OPCx) =
 
   # Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
   # Leer los 1000 archivos creados. 
   # Releer los 1000 archivos creados.
-  # Crear, leer y DAs pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.
+  # Crear, leer y borrar archivos pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.
   # Crear 2000 archivos de 5 MB para accesos secuenciales y escrituras 
   # Escribir secuencialmente en los 2000 archivos.
   # Reescribir aleatoriamente en los archivos.
@@ -73,7 +75,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Partir un archivo de 10 MB  en piezas de 2048 bytes.
   # Partir un archivo de 10 MB en piezas de 4096 bytes.
   # Partir un archivo de 10 MB  en piezas de 8192 bytes.
-  # Crear un archivo de 1 GB y otro de 10 GB  desde /dev/zero.
+  # Crear un archivo de 1 GB desde /dev/zero.
   # Copiar el archivo de 1 GB a otro directorio.
   # Mover el archivo de 1 GB a otro directorio
   # Cat del archivo de 1 GB a /dev/null.
@@ -82,33 +84,34 @@ Se puede manipular editando /etc/fstab con lo siguiente:
 = Relaciones de ls operacione con las Métricas y Parámetros =
 
 La siguiente tabla resume todas nuestras operaciones, y su relación con los parámetros y métricas que se quieren medir. 
+
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
-|| *Operaciones* || *Operaciones Básicas* || *Métricas*        || *Parámetros influyentes* ||*Implementar* || Responsable
-|| OPC1          || CA, LA (S).           || M2, 4, 6, 7, 8.   ||  ||  ||  ||
-|| OPC2          || LA (S-A).             || M1, 3, 5, 7.      ||  ||  ||  ||
-|| OPC3          || LA (S-A).             || M1, 3, 5, 7.      ||  ||  ||  ||
-|| OPC4          || CA, EA, LA, DA.       || M1 – 8.           ||  ||  ||  ||
-|| OPC5          || CA. LA (S). EA (S-A). || M1, 3, 5, 7.      ||  ||  ||  ||
-|| OPC6          || EA (S).               || M2, 4, 6, 7, 8.   ||  ||  ||  ||
-|| OPC7          || EA (A).               || M2, 4, 6, 7, 8.   ||  ||  ||  ||
-|| OPC8          || LA (S).               || M1, 3, 5, 7.      ||  ||  ||  ||
-|| OPC9          || LA (A).               || M1, 3, 5, 7.      ||  ||  ||  ||
-|| OPC10         || CD. CA. EA (S).       || M2, 4, 6, 7, 8.   ||  ||  ||  ||
-|| OPC11         || BA.                   || M1, 3, 5, 7.      ||  ||  ||  ||
-|| OPC12         || DA. BD.               || M2, 4, 6, 7.      ||  ||  ||  ||
-|| OPC13         || CD.                   || M2, 4, 6, 7, 8.   ||  ||  ||  ||
-|| OPC14         || BD.                   || M2, 4, 6, 7, 8.   ||  ||  ||  ||
-|| OPC15         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
-|| OPC16         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
-|| OPC17         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
-|| OPC18         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
-|| OPC19         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
-|| OPC20         || CA. EA.               || M2, 4, 6, 7, 8.   ||  ||  ||  ||
-|| OPC21         || LA. EA.               || M1 - 8.           ||  ||  ||  ||
-|| OPC22         || LA. EA. DA.           || M1 - 8.           ||  ||  ||  ||
-|| OPC23         || LA. EA                || M1 - 8.           ||  ||  ||  ||
-|| OPC24         || DA.                   || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| *Operaciones* || *Operaciones Básicas* || *Métricas*        || *Parámetros* ||*Implementar*  || *Responsable* ||
+|| OPC1          || CA, LA (S).           || M2, 4, 6, 7, 8.   ||P2,P3,P4   ||Si  ||  ||
+|| OPC2          || LA (S-A).             || M1, 3, 5, 7.      ||P1,P4      ||Si  ||  ||
+|| OPC3          || LA (S-A).             || M1, 3, 5, 7.      ||P1,P4      ||Si  ||  ||
+|| OPC4          || CA, EA, LA, DA.       || M1 – 8.           ||P1,P3,P4   ||Si  ||  ||
+|| OPC5          || CA. LA (S). EA (S-A). || M1, 3, 5, 7.      ||P1,P2,P3   ||Si  ||  ||
+|| OPC6          || EA (S).               || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
+|| OPC7          || EA (A).               || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
+|| OPC8          || LA (S).               || M1, 3, 5, 7.      ||P2,P3      ||Si  ||  ||
+|| OPC9          || LA (A).               || M1, 3, 5, 7.      ||P4         ||Si  ||  ||
+|| OPC10         || CD. CA. EA (S).       || M2, 4, 6, 7, 8.   ||P4         ||Si  ||  ||
+|| OPC11         || BA.                   || M1, 3, 5, 7.      ||P4         ||Si  ||  ||
+|| OPC12         || DA. BD.               || M2, 4, 6, 7.      ||P2,P3      ||Si  ||  ||
+|| OPC13         || CD.                   || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
+|| OPC14         || BD.                   || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
+|| OPC15         || LA. EA.               || M1 – 8.           ||           ||No  ||  ||
+|| OPC16         || LA. EA.               || M1 – 8.           ||P1,P2,P3   ||Si  ||  ||
+|| OPC17         || LA. EA.               || M1 – 8.           ||           ||No  ||  ||
+|| OPC18         || LA. EA.               || M1 – 8.           ||P1,P2,P3   ||Si  ||  ||
+|| OPC19         || LA. EA.               || M1 – 8.           ||           ||No  ||  ||
+|| OPC20         || CA. EA.               || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
+|| OPC21         || LA. EA.               || M1 - 8.           ||P2,P3      ||Si  ||  ||
+|| OPC22         || LA. EA. DA.           || M1 - 8.           ||P2,P3      ||Si  ||  ||
+|| OPC23         || LA. EA                || M1 - 8.           ||           ||    ||  ||
+|| OPC24         || DA.                   || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
  ||
  * “A” significa aleatorio.
  * “S” significa secuencial.
