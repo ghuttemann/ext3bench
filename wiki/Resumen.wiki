@@ -13,7 +13,7 @@ Se presenta en esta página un resumen de lo más resaltante a tener en cuenta e
   # Cantidad de bytes escritos por segundo.
   # Latencia de lectura.
   # Latencia de escritura.
-  # Longitud de la cola de planificación del disco (opcional).
+  # Tiempo de creación y borrado de directorios.
   # Porcentaje de fragmentación del sistema de archivos.
 
 = Parámetros a variar (Px) = 
@@ -87,31 +87,31 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
-|| *Operaciones* || *Operaciones Básicas* || *Métricas*        || *Parámetros* || *Implementar*  || *Responsable* ||
-|| OPC1          || CA, LA (S).           || M2, 4, 6, 7, 8.   ||P2,P3,P4   ||Si  ||  ||
-|| OPC2          || LA (S-A).             || M1, 3, 5, 7.      ||P1,P4      ||Si  ||  ||
-|| OPC3          || LA (S-A).             || M1, 3, 5, 7.      ||P1,P4      ||Si  ||  ||
-|| OPC4          || CA, EA, LA, DA.       || M1 – 8.           ||P1,P3,P4   ||Si  ||  ||
-|| OPC5          || CA. LA (S). EA (S-A). || M1, 3, 5, 7.      ||P1,P2,P3   ||Si  ||  ||
-|| OPC6          || EA (S).               || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
-|| OPC7          || EA (A).               || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
-|| OPC8          || LA (S).               || M1, 3, 5, 7.      ||P2,P3      ||Si  ||  ||
-|| OPC9          || LA (A).               || M1, 3, 5, 7.      ||P4         ||Si  ||  ||
-|| OPC10         || CD. CA. EA (S).       || M2, 4, 6, 7, 8.   ||P4         ||Si  ||  ||
-|| OPC11         || BA.                   || M1, 3, 5, 7.      ||P4         ||Si  ||  ||
-|| OPC12         || DA. BD.               || M2, 4, 6, 7.      ||P2,P3      ||Si  ||  ||
-|| OPC13         || CD.                   || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
-|| OPC14         || BD.                   || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
-|| OPC15         || LA. EA.               || M1 – 8.           ||           ||No  ||  ||
-|| OPC16         || LA. EA.               || M1 – 8.           ||P1,P2,P3   ||Si  ||  ||
-|| OPC17         || LA. EA.               || M1 – 8.           ||           ||No  ||  ||
-|| OPC18         || LA. EA.               || M1 – 8.           ||P1,P2,P3   ||Si  ||  ||
-|| OPC19         || LA. EA.               || M1 – 8.           ||           ||No  ||  ||
-|| OPC20         || CA. EA.               || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
-|| OPC21         || LA. EA.               || M1 - 8.           ||P2,P3      ||Si  ||  ||
-|| OPC22         || LA. EA. DA.           || M1 - 8.           ||P2,P3      ||Si  ||  ||
-|| OPC23         || LA. EA                || M1 - 8.           ||           ||No  ||  ||
-|| OPC24         || DA.                   || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
+|| *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* ||
+|| OPC1  || CA, LA (S).          || M 2, 4, 6, 8.   ||P2,P3,P4||Si  ||  ||
+|| OPC2  || LA (S-A).            || M 1, 3, 5.      ||P1,P4   ||Si  ||  ||
+|| OPC3  || LA (S-A).            || M 1, 3, 5.      ||P1,P4   ||Si  ||  ||
+|| OPC4  || CA, EA, LA, DA.      || M 1-6, 8.       ||P1,P3,P4||Si  ||  ||
+|| OPC5  || CA. LA (S). EA (S-A).|| M 1, 3, 5.      ||P1,P2,P3||Si  ||  ||
+|| OPC6  || EA (S).              || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  ||
+|| OPC7  || EA (A).              || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  ||
+|| OPC8  || LA (S).              || M 1, 3, 5, 7.   ||P2,P3   ||Si  ||  ||
+|| OPC9  || LA (A).              || M 1, 3, 5, 7.   ||P4      ||Si  ||  ||
+|| OPC10 || CD. CA. EA (S).      || M 2, 4, 6, 7, 8.||P4      ||Si  ||  ||
+|| OPC11 || BA.                  || M 1, 3, 5, 7.   ||P4      ||Si  ||  ||
+|| OPC12 || DA. BD.              || M 2, 4, 6, 7.   ||P2,P3   ||Si  ||  ||
+|| OPC13 || CD.                  || M 7.            ||P2,P3   ||Si  ||  ||
+|| OPC14 || BD.                  || M 7.            ||P2,P3   ||Si  ||  ||
+|| OPC15 || LA. EA.              || M 1–6, 8.       ||        ||No  ||  ||
+|| OPC16 || LA. EA.              || M 1–6, 8.       ||P1,P2,P3||Si  ||  ||
+|| OPC17 || LA. EA.              || M 1–6, 8.       ||        ||No  ||  ||
+|| OPC18 || LA. EA.              || M 1–6, 8.       ||P1,P2,P3||Si  ||  ||
+|| OPC19 || LA. EA.              || M 1–6, 8.       ||        ||No  ||  ||
+|| OPC20 || CA. EA.              || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  ||
+|| OPC21 || LA. EA.              || M 1–6, 8.       ||P2,P3   ||Si  ||  ||
+|| OPC22 || LA. EA. DA.          || M 1–6, 8.       ||P2,P3   ||Si  ||  ||
+|| OPC23 || LA. EA               || M 1–6, 8.       ||        ||No  ||  ||
+|| OPC24 || DA.                  || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  || 
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
