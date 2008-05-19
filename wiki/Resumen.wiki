@@ -118,7 +118,7 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 
 = Plan de implementación = 
 
-# Completar la implementación de *_primitivas.c:_* Contiene la implementación adecuada para realizar las operaciones básicas
-# Completar la implementación de *_operaciones.c:_* donde estarán todas las operaciones de carga. 
+  # Completar la implementación de *_primitivas.c:_* Contiene la implementación adecuada para realizar las operaciones básicas
+  # Completar la implementación de *_operaciones.c:_* donde estarán todas las operaciones de carga. 
 
-_*Obs:*_ Para no generar conflictos, tanto primitivas como operaciones se podría modularizar para que cada quien edite la operación en un .c distinto y todo se incluya en el consolidado mediante archivos .h
+  _*Obs:*_ Para no generar conflictos, tanto primitivas como operaciones se podría modularizar para que cada quien edite la operación en un .c distinto y todo se incluya en el consolidado mediante archivos .h
