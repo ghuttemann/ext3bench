@@ -87,7 +87,7 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
-|| *Operaciones* || *Operaciones Básicas* || *Métricas*        || *Parámetros* ||*Implementar*  || *Responsable* ||
+|| *Operaciones* || *Operaciones Básicas* || *Métricas*        || *Parámetros* || *Implementar*  || *Responsable* ||
 || OPC1          || CA, LA (S).           || M2, 4, 6, 7, 8.   ||P2,P3,P4   ||Si  ||  ||
 || OPC2          || LA (S-A).             || M1, 3, 5, 7.      ||P1,P4      ||Si  ||  ||
 || OPC3          || LA (S-A).             || M1, 3, 5, 7.      ||P1,P4      ||Si  ||  ||
@@ -110,10 +110,15 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 || OPC20         || CA. EA.               || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
 || OPC21         || LA. EA.               || M1 - 8.           ||P2,P3      ||Si  ||  ||
 || OPC22         || LA. EA. DA.           || M1 - 8.           ||P2,P3      ||Si  ||  ||
-|| OPC23         || LA. EA                || M1 - 8.           ||           ||    ||  ||
+|| OPC23         || LA. EA                || M1 - 8.           ||           ||No  ||  ||
 || OPC24         || DA.                   || M2, 4, 6, 7, 8.   ||P2,P3      ||Si  ||  ||
- ||
+
  * “A” significa aleatorio.
  * “S” significa secuencial.
 
 = Plan de implementación = 
+
+# Completar la implementación de *_primitivas.c:_* Contiene la implementación adecuada para realizar las operaciones básicas
+# Completar la implementación de *_operaciones.c:_* donde estarán todas las operaciones de carga. 
+
+_*Obs:*_ Para no generar conflictos, tanto primitivas como operaciones se podría modularizar para que cada quien edite la operación en un .c distinto y todo se incluya en el consolidado mediante archivos .h
