@@ -35,19 +35,24 @@ Se puede manipular editando /etc/fstab con lo siguiente:
 
 = Operaciones Básicas =
 
-  # Crear Archivo.
-  # Leer Archivo.
-    ## Secuencialmente.
-    ## Aleatoriamente.
-  # Escribir Archivo.
-    ## Secuencialmente.
-    ## Aleatoriamente.
-  # Buscar Archivo.
-  # Borrar Archivo.
-  # Crear Directorio.
-  # Borrar Directorio.
+  _Operaciones_         _Abreviatura_
 
-= Operaciones considerando las cargas (Operación-Carga x) =
+  # Crear Archivo.      *(CA)*
+  # Leer Archivo.       *(LA)*
+    ## Secuencialmente. 
+    ## Aleatoriamente.
+  # Escribir Archivo.   *(EA)*
+    ## Secuencialmente.
+    ## Aleatoriamente.
+  # Buscar Archivo.     *(BA)*
+  # Borrar Archivo.     *(DA)*  
+{{{     
+       La D ese de Delete 
+}}}
+  # Crear Directorio.   *(CD)*
+  # Borrar Directorio.  *(BD)*
+
+= Operaciones considerando las cargas (OPCx) =
 
   # Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
   # Leer los 1000 archivos creados. 
