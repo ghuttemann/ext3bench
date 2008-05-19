@@ -1,0 +1,92 @@
+#summary Lista de métricas a medir evaluar por el benchamrk
+
+= Introducción =
+
+Se presenta en esta página un resumen de lo más resaltante a tener en cuenta en nuestro proyecto. 
+
+
+= Métricas para la evaluación del sistema (Métrica x) =
+
+
+  # Cantidad de lecturas por segundo.
+  # Cantidad de escrituras por segundo.
+  # Cantidad de bytes leídos por segundo.
+  # Cantidad de bytes escritos por segundo.
+  # Latencia de lectura.
+  # Latencia de escritura.
+  # Longitud de la cola de planificación del disco (opcional).
+  # Porcentaje de fragmentación del sistema de archivos.
+
+= Operaciones Básicas =
+
+  # Crear Archivo.
+  # Leer Archivo.
+    ## Secuencialmente.
+    ## Aleatoriamente.
+  # Escribir Archivo.
+    ## Secuencialmente.
+    ## Aleatoriamente.
+  # Buscar Archivo.
+  # Borrar Archivo.
+  # Crear Directorio.
+  # Borrar Directorio.
+
+= Operaciones considerando las cargas (Operación-Carga x) =
+
+  # Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
+  # Leer los 1000 archivos creados. 
+  # Releer los 1000 archivos creados.
+  # Crear, leer y borrar archivos pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.
+  # Crear 2000 archivos de 5 MB para accesos secuenciales y escrituras 
+  # Escribir secuencialmente en los 2000 archivos.
+  # Reescribir aleatoriamente en los archivos.
+  # Leer los 2000 archivos de forma secuencial
+  # Leer los 2000 archivos de forma aleatoria.
+  # Crear 10000 archivos  en un solo directorio.
+  # Buscar diferentes archivos en el directorio creado por medio de find.
+  # Borrar el directorio y todo su contenido.
+  # Crear 10000 directorios.  
+  # Borrar el directorio que contiene los 10000 directorios.
+  # Partir un archivo de 10 MB en piezas de 1000 bytes.
+  # Partir un archivo de 10 MB  en piezas de 1024 bytes.
+  # Partir un archivo de 10 MB  en piezas de 2048 bytes.
+  # Partir un archivo de 10 MB en piezas de 4096 bytes.
+  # Partir un archivo de 10 MB  en piezas de 8192 bytes.
+  # Crear un archivo de 1 GB y otro de 10 GB  desde /dev/zero.
+  # Copiar el archivo de 1 GB a otro directorio.
+  # Mover el archivo de 1 GB a otro directorio
+  # Cat del archivo de 1 GB a /dev/null.
+  # Borrar el archivo creado.
+
+
+|| *Operaciones con cargas* || *Operaciones Básicas* || *Métricas Influidas*          ||
+|| Operación-Carga 1 || Crear Archivo, Leer Archivo (S). || Métricas 2, 4, 6, 7, 8.   ||
+|| Operación-Carga 2 || Leer Archivo (S-A).|| Métricas 1, 3, 5, 7.                    || 
+|| Operación-Carga 3 || Leer Archivo (S-A).|| Métricas 1, 3, 5, 7.                    || 
+|| Operación-Carga 4 || Crear Archivo, Escribir Archivo, Leer Archivo, Borrar Archivo.|| Métricas 1 – 8.|| 
+|| Operación-Carga 5 || Crear Archivo. Leer Archivo (S). Escribir Archivo (S-A).      || Métricas 1, 3, 5, 7. || 
+|| Operación-Carga 6 || Escribir Archivo (S).|| Métricas 2, 4, 6, 7, 8.               || 
+|| Operación-Carga 7 || Escribir Archivo (A).|| Métricas 2, 4, 6, 7, 8.               || 
+|| Operación-Carga 8 || Leer Archivo (S).|| Métricas 1, 3, 5, 7.|| 
+|| Operación-Carga 9 || Leer Archivo (A).|| Métricas 1, 3, 5, 7.|| 
+|| Operación-Carga 10|| Crear Directorio. Crear Archivo. Escribir Archivo (S).|| Métricas 2, 4, 6, 7, 8.|| 
+|| Operación-Carga 11|| Buscar Archivo.|| Métricas 1, 3, 5, 7.|| 
+|| Operación-Carga 12|| Borrar Archivo. Borrar Directorio.|| Métricas 2, 4, 6, 7.|| 
+|| Operación-Carga 13|| Crear Directorio.|| Métricas 2, 4, 6, 7, 8.|| 
+|| Operación-Carga 14|| Borrar Directorio.|| Métricas 2, 4, 6, 7, 8.|| 
+|| Operación-Carga 15|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
+|| Operación-Carga 16|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
+|| Operación-Carga 17|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
+|| Operación-Carga 18|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
+|| Operación-Carga 19|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
+|| Operación-Carga 20|| Crear Archivo. Escribir Archivo.|| Métricas 2, 4, 6, 7, 8.|| 
+|| Operación-Carga 21|| Leer Archivo. Escribir Archivo. || Métricas 1 - 8.|| 
+|| Operación-Carga 22|| Leer Archivo. Escribir Archivo. Borrar Archivo.|| Métricas 1 - 8.|| 
+|| Operación-Carga 23|| Leer Archivo. Escribir Archivo|| Métricas 1 - 8.|| 
+|| Operación-Carga 24|| Borrar Archivo.|| Métricas 2, 4, 6, 7, 8.|| 
+
+* “A” significa aleatorio.
+* “S” significa secuencial.
+
+
+
