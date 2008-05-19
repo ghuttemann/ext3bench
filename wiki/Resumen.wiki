@@ -57,7 +57,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
   # Leer los 1000 archivos creados. 
   # Releer los 1000 archivos creados.
-  # Crear, leer y borrar archivos pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.
+  # Crear, leer y DAs pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.
   # Crear 2000 archivos de 5 MB para accesos secuenciales y escrituras 
   # Escribir secuencialmente en los 2000 archivos.
   # Reescribir aleatoriamente en los archivos.
@@ -81,37 +81,36 @@ Se puede manipular editando /etc/fstab con lo siguiente:
 
 = Relaciones de ls operacione con las Métricas y Parámetros =
 
-|| *Operaciones* || *Operaciones Básicas* || *Métricas*  || *Parámetros influyentes* ||
-|| Operación-Carga 1 || Crear Archivo, Leer Archivo (S). || Métricas 2, 4, 6, 7, 8.   ||
-|| Operación-Carga 2 || Leer Archivo (S-A).|| Métricas 1, 3, 5, 7.                    || 
-|| Operación-Carga 3 || Leer Archivo (S-A).|| Métricas 1, 3, 5, 7.                    || 
-|| Operación-Carga 4 || Crear Archivo, Escribir Archivo, Leer Archivo, Borrar Archivo.|| Métricas 1 – 8.|| 
-|| Operación-Carga 5 || Crear Archivo. Leer Archivo (S). Escribir Archivo (S-A).      || Métricas 1, 3, 5, 7. || 
-|| Operación-Carga 6 || Escribir Archivo (S).|| Métricas 2, 4, 6, 7, 8.               || 
-|| Operación-Carga 7 || Escribir Archivo (A).|| Métricas 2, 4, 6, 7, 8.               || 
-|| Operación-Carga 8 || Leer Archivo (S).|| Métricas 1, 3, 5, 7.|| 
-|| Operación-Carga 9 || Leer Archivo (A).|| Métricas 1, 3, 5, 7.|| 
-|| Operación-Carga 10|| Crear Directorio. Crear Archivo. Escribir Archivo (S).|| Métricas 2, 4, 6, 7, 8.|| 
-|| Operación-Carga 11|| Buscar Archivo.|| Métricas 1, 3, 5, 7.|| 
-|| Operación-Carga 12|| Borrar Archivo. Borrar Directorio.|| Métricas 2, 4, 6, 7.|| 
-|| Operación-Carga 13|| Crear Directorio.|| Métricas 2, 4, 6, 7, 8.|| 
-|| Operación-Carga 14|| Borrar Directorio.|| Métricas 2, 4, 6, 7, 8.|| 
-|| Operación-Carga 15|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
-|| Operación-Carga 16|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
-|| Operación-Carga 17|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
-|| Operación-Carga 18|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
-|| Operación-Carga 19|| Leer Archivo. Escribir Archivo.|| Métricas 1 – 8.|| 
-|| Operación-Carga 20|| Crear Archivo. Escribir Archivo.|| Métricas 2, 4, 6, 7, 8.|| 
-|| Operación-Carga 21|| Leer Archivo. Escribir Archivo. || Métricas 1 - 8.|| 
-|| Operación-Carga 22|| Leer Archivo. Escribir Archivo. Borrar Archivo.|| Métricas 1 - 8.|| 
-|| Operación-Carga 23|| Leer Archivo. Escribir Archivo|| Métricas 1 - 8.|| 
-|| Operación-Carga 24|| Borrar Archivo.|| Métricas 2, 4, 6, 7, 8.|| 
+La siguiente tabla resume todas nuestras operaciones, y su relación con los parámetros y métricas que se quieren medir. 
+También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
+|| *Operaciones* || *Operaciones Básicas* || *Métricas*        || *Parámetros influyentes* ||*Implementar* || Responsable
+|| OPC1          || CA, LA (S).           || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| OPC2          || LA (S-A).             || M1, 3, 5, 7.      ||  ||  ||  ||
+|| OPC3          || LA (S-A).             || M1, 3, 5, 7.      ||  ||  ||  ||
+|| OPC4          || CA, EA, LA, DA.       || M1 – 8.           ||  ||  ||  ||
+|| OPC5          || CA. LA (S). EA (S-A). || M1, 3, 5, 7.      ||  ||  ||  ||
+|| OPC6          || EA (S).               || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| OPC7          || EA (A).               || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| OPC8          || LA (S).               || M1, 3, 5, 7.      ||  ||  ||  ||
+|| OPC9          || LA (A).               || M1, 3, 5, 7.      ||  ||  ||  ||
+|| OPC10         || CD. CA. EA (S).       || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| OPC11         || BA.                   || M1, 3, 5, 7.      ||  ||  ||  ||
+|| OPC12         || DA. BD.               || M2, 4, 6, 7.      ||  ||  ||  ||
+|| OPC13         || CD.                   || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| OPC14         || BD.                   || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| OPC15         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
+|| OPC16         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
+|| OPC17         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
+|| OPC18         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
+|| OPC19         || LA. EA.               || M1 – 8.           ||  ||  ||  ||
+|| OPC20         || CA. EA.               || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+|| OPC21         || LA. EA.               || M1 - 8.           ||  ||  ||  ||
+|| OPC22         || LA. EA. DA.           || M1 - 8.           ||  ||  ||  ||
+|| OPC23         || LA. EA                || M1 - 8.           ||  ||  ||  ||
+|| OPC24         || DA.                   || M2, 4, 6, 7, 8.   ||  ||  ||  ||
+ ||
  * “A” significa aleatorio.
  * “S” significa secuencial.
 
-= Road Map = 
-
-Pasos a seguir para la implementación de las operaciones: 
-
-|| Operación || Responsable ||
+= Plan de implementación = 
