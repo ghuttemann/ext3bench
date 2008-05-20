@@ -32,20 +32,20 @@ Se puede manipular editando /etc/fstab con lo siguiente:
 
 = Operaciones Básicas =
 
-  _Operaciones_         _Abreviatura_      _Responsable_      _Estado_
+  _Operaciones_ ------- _Abreviatura_ ------- _Responsable_ ------- _Estado_
 
-  # Crear Archivo.      *(CA)*             fmancia            terminado
+  # Crear Archivo.      *(CA)*             ghuttemann         semi-terminado
 {{{
     void crear_archivos(int n, long long  cbytes, char * patron);
 }}}
-  # Leer Archivo.       *(LA)*             mrodas             
+  # Leer Archivo.       *(LA)*             ghuttemann             
     ## Secuencialmente. 
     ## Aleatoriamente.
-  # Escribir Archivo.   *(EA)*             mrodas             
+  # Escribir Archivo.   *(EA)*             ghuttemann             
     ## Secuencialmente.
     ## Aleatoriamente.
   # Buscar Archivo.     *(BA)*             cparra             
-  # Borrar Archivo.     *(DA)*             mrodas            
+  # Borrar Archivo.     *(DA)*             cparra            
 {{{     
        La D es de Delete 
 }}}
