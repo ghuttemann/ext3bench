@@ -1,4 +1,4 @@
-#summary Lista de métricas a medir evaluar por el benchamrk
+#summary - Resumen General de los aspectos más resaltantes del proyecto
 
 = Introducción =
 
