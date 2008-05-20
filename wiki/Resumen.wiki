@@ -85,34 +85,35 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
-|| *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* ||
-|| OPC1  || CA, LA (S).          || M 2, 4, 6.   ||P2,P3,P4||Si  ||  ||
-|| OPC2  || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  ||
-|| OPC3  || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  ||
-|| OPC4  || CA, EA, LA, DA.      || M 8.         ||P1,P3,P4||Si  ||  ||
-|| OPC5  || CA. LA (S). EA (S-A).|| M 1, 3, 5.   ||P1,P2,P3||Si  ||  ||
-|| OPC6  || EA (S).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  ||
-|| OPC7  || EA (A).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  ||
-|| OPC8  || LA (S).              || M 1, 3, 5, 7.||P2,P3   ||Si  ||  ||
-|| OPC9  || LA (A).              || M 1, 3, 5, 7.||P4      ||Si  ||  ||
-|| OPC10 || CD. CA. EA (S).      || M 2, 4, 6, 7.||P4      ||Si  ||  ||
-|| OPC11 || BA.                  || M 1, 3, 5, 7.||P4      ||Si  ||  ||
-|| OPC12 || DA. BD.              || M 2, 4, 6, 7.||P2,P3   ||Si  ||  ||
-|| OPC13 || CD.                  || M 7.         ||P2,P3   ||Si  ||  ||
-|| OPC14 || BD.                  || M 7.         ||P2,P3   ||Si  ||  ||
-|| OPC15 || LA. EA.              || M 1–6.       ||        ||No  ||  ||
-|| OPC16 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  ||
-|| OPC17 || LA. EA.              || M 1–6.       ||        ||No  ||  ||
-|| OPC18 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  ||
-|| OPC19 || LA. EA.              || M 1–6.       ||        ||No  ||  ||
-|| OPC20 || CA. EA.              || M 2, 4, 6.   ||P2,P3   ||Si  ||  ||
-|| OPC21 || LA. EA.              || M 1–6.       ||P2,P3   ||Si  ||  ||
-|| OPC22 || LA. EA. DA.          || M 1–6.       ||P2,P3   ||Si  ||  ||
-|| OPC23 || LA. EA               || M 1–6.       ||        ||No  ||  ||
-|| OPC24 || DA.                  || M 2, 4, 6.   ||P2,P3   ||Si  ||  || 
+|| *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* || *Conjunto* ||
+|| OPC1  || CA, LA (S).          || M 2, 4, 6.   ||P2,P3,P4||Si  ||  || C1 || 
+|| OPC2  || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  || C1 ||
+|| OPC3  || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  || C1 ||
+|| OPC4  || CA, EA, LA, DA.      || M 8.         ||P1,P3,P4||Si  ||  || C2 ||
+|| OPC5  || CA. LA (S). EA (S-A).|| M 1, 3, 5.   ||P1,P2,P3||Si  ||  || C3 ||
+|| OPC6  || EA (S).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C3 ||
+|| OPC7  || EA (A).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C3 ||
+|| OPC8  || LA (S).              || M 1, 3, 5, 7.||P2,P3   ||Si  ||  || C3 ||
+|| OPC9  || LA (A).              || M 1, 3, 5, 7.||P4      ||Si  ||  || C3 ||
+|| OPC10 || CD. CA. EA (S).      || M 2, 4, 6, 7.||P4      ||Si  ||  || C4 ||
+|| OPC11 || BA.                  || M 1, 3, 5, 7.||P4      ||Si  ||  || C4 ||
+|| OPC12 || DA. BD.              || M 2, 4, 6, 7.||P2,P3   ||Si  ||  || C4 ||
+|| OPC13 || CD.                  || M 7.         ||P2,P3   ||Si  ||  || C5 ||
+|| OPC14 || BD.                  || M 7.         ||P2,P3   ||Si  ||  || C5 ||
+|| OPC15 || LA. EA.              || M 1–6.       ||        ||No  ||  || C6 ||
+|| OPC16 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  || C6 ||
+|| OPC17 || LA. EA.              || M 1–6.       ||        ||No  ||  || C6 ||
+|| OPC18 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  || C6 ||
+|| OPC19 || LA. EA.              || M 1–6.       ||        ||No  ||  || C6 ||
+|| OPC20 || CA. EA.              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
+|| OPC21 || LA. EA.              || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
+|| OPC22 || LA. EA. DA.          || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
+|| OPC23 || LA. EA               || M 1–6.       ||        ||No  ||  || C7 ||
+|| OPC24 || DA.                  || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
+ * “Cn” significa el conjunto n de operaciones relacionadas.
 
 = Plan de implementación = 
 
