@@ -42,7 +42,8 @@ Se puede manipular editando /etc/fstab con lo siguiente:
     ## Secuencialmente.
     ## Aleatoriamente.
   # Buscar Archivo.     *(BA)*             cparra             
-  # Borrar Archivo.     *(DA)*             cparra            
+  # Borrar Archivo.     *(DA)*             cparra
+  # Partir Archivo      *(PA)*             ghuttemann
 {{{     
        La D es de Delete 
 }}}
