@@ -67,11 +67,8 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Borrar el directorio y todo su contenido.
   # Crear 10000 directorios.  
   # Borrar el directorio que contiene los 10000 directorios.
-  # Partir un archivo de 10 MB en piezas de 1000 bytes.
   # Partir un archivo de 10 MB  en piezas de 1024 bytes.
-  # Partir un archivo de 10 MB  en piezas de 2048 bytes.
   # Partir un archivo de 10 MB en piezas de 4096 bytes.
-  # Partir un archivo de 10 MB  en piezas de 8192 bytes.
   # Crear un archivo de 1 GB desde /dev/zero.
   # Copiar el archivo de 1 GB a otro directorio.
   # Mover el archivo de 1 GB a otro directorio
@@ -99,15 +96,12 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 || OPC12 || DA. BD.              || M 2, 4, 6, 7.||P2,P3   ||Si  ||  || C4 ||
 || OPC13 || CD.                  || M 7.         ||P2,P3   ||Si  ||  || C5 ||
 || OPC14 || BD.                  || M 7.         ||P2,P3   ||Si  ||  || C5 ||
-|| OPC15 || LA. EA.              || M 1–6.       ||        ||No  ||  || C6 ||
+|| OPC15 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  || C6 ||
 || OPC16 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  || C6 ||
-|| OPC17 || LA. EA.              || M 1–6.       ||        ||No  ||  || C6 ||
-|| OPC18 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  || C6 ||
-|| OPC19 || LA. EA.              || M 1–6.       ||        ||No  ||  || C6 ||
-|| OPC20 || CA. EA.              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
-|| OPC21 || LA. EA.              || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
-|| OPC22 || LA. EA. DA.          || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
-|| OPC23 || DA.                  || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
+|| OPC17 || CA. EA.              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
+|| OPC18 || LA. EA.              || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
+|| OPC19 || LA. EA. DA.          || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
+|| OPC20 || DA.                  || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
