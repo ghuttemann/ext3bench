@@ -57,7 +57,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
   # Leer los 1000 archivos creados. 
   # Releer los 1000 archivos creados.
-  # Crear, leer y borrar archivos pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.^1^
+  # *Crear, leer y borrar archivos pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.^1^*
   # Crear 2000 archivos de 5 MB para accesos secuenciales y escrituras 
   # Escribir secuencialmente en los 2000 archivos.
   # Reescribir aleatoriamente en los archivos.
