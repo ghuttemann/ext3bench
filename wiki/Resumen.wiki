@@ -59,7 +59,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
   # Leer los 1000 archivos creados. 
   # Releer los 1000 archivos creados.
-  # Crear, leer y borrar archivos pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.
+  # Crear, leer y borrar archivos pequeños (que no ocupan ni un bloque) para simular el uso de programas como Squid, servidores de correo electrónico, etc.^1^
   # Crear 2000 archivos de 5 MB para accesos secuenciales y escrituras 
   # Escribir secuencialmente en los 2000 archivos.
   # Reescribir aleatoriamente en los archivos.
@@ -81,6 +81,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Cat del archivo de 1 GB a /dev/null.
   # Borrar el archivo creado.
 
+  ^1^ Esta operación se realizará aparte exclusivamente para medir la fragmentación.
 = Relaciones de ls operacione con las Métricas y Parámetros =
 
 La siguiente tabla resume todas nuestras operaciones, y su relación con los parámetros y métricas que se quieren medir. 
@@ -88,30 +89,30 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
 || *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* ||
-|| OPC1  || CA, LA (S).          || M 2, 4, 6, 8.   ||P2,P3,P4||Si  ||  ||
-|| OPC2  || LA (S-A).            || M 1, 3, 5.      ||P1,P4   ||Si  ||  ||
-|| OPC3  || LA (S-A).            || M 1, 3, 5.      ||P1,P4   ||Si  ||  ||
-|| OPC4  || CA, EA, LA, DA.      || M 1-6, 8.       ||P1,P3,P4||Si  ||  ||
-|| OPC5  || CA. LA (S). EA (S-A).|| M 1, 3, 5.      ||P1,P2,P3||Si  ||  ||
-|| OPC6  || EA (S).              || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  ||
-|| OPC7  || EA (A).              || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  ||
-|| OPC8  || LA (S).              || M 1, 3, 5, 7.   ||P2,P3   ||Si  ||  ||
-|| OPC9  || LA (A).              || M 1, 3, 5, 7.   ||P4      ||Si  ||  ||
-|| OPC10 || CD. CA. EA (S).      || M 2, 4, 6, 7, 8.||P4      ||Si  ||  ||
-|| OPC11 || BA.                  || M 1, 3, 5, 7.   ||P4      ||Si  ||  ||
-|| OPC12 || DA. BD.              || M 2, 4, 6, 7.   ||P2,P3   ||Si  ||  ||
-|| OPC13 || CD.                  || M 7.            ||P2,P3   ||Si  ||  ||
-|| OPC14 || BD.                  || M 7.            ||P2,P3   ||Si  ||  ||
-|| OPC15 || LA. EA.              || M 1–6, 8.       ||        ||No  ||  ||
-|| OPC16 || LA. EA.              || M 1–6, 8.       ||P1,P2,P3||Si  ||  ||
-|| OPC17 || LA. EA.              || M 1–6, 8.       ||        ||No  ||  ||
-|| OPC18 || LA. EA.              || M 1–6, 8.       ||P1,P2,P3||Si  ||  ||
-|| OPC19 || LA. EA.              || M 1–6, 8.       ||        ||No  ||  ||
-|| OPC20 || CA. EA.              || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  ||
-|| OPC21 || LA. EA.              || M 1–6, 8.       ||P2,P3   ||Si  ||  ||
-|| OPC22 || LA. EA. DA.          || M 1–6, 8.       ||P2,P3   ||Si  ||  ||
-|| OPC23 || LA. EA               || M 1–6, 8.       ||        ||No  ||  ||
-|| OPC24 || DA.                  || M 2, 4, 6, 8.   ||P2,P3   ||Si  ||  || 
+|| OPC1  || CA, LA (S).          || M 2, 4, 6.   ||P2,P3,P4||Si  ||  ||
+|| OPC2  || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  ||
+|| OPC3  || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  ||
+|| OPC4  || CA, EA, LA, DA.      || M 8.         ||P1,P3,P4||Si  ||  ||
+|| OPC5  || CA. LA (S). EA (S-A).|| M 1, 3, 5.   ||P1,P2,P3||Si  ||  ||
+|| OPC6  || EA (S).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  ||
+|| OPC7  || EA (A).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  ||
+|| OPC8  || LA (S).              || M 1, 3, 5, 7.||P2,P3   ||Si  ||  ||
+|| OPC9  || LA (A).              || M 1, 3, 5, 7.||P4      ||Si  ||  ||
+|| OPC10 || CD. CA. EA (S).      || M 2, 4, 6, 7.||P4      ||Si  ||  ||
+|| OPC11 || BA.                  || M 1, 3, 5, 7.||P4      ||Si  ||  ||
+|| OPC12 || DA. BD.              || M 2, 4, 6, 7.||P2,P3   ||Si  ||  ||
+|| OPC13 || CD.                  || M 7.         ||P2,P3   ||Si  ||  ||
+|| OPC14 || BD.                  || M 7.         ||P2,P3   ||Si  ||  ||
+|| OPC15 || LA. EA.              || M 1–6.       ||        ||No  ||  ||
+|| OPC16 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  ||
+|| OPC17 || LA. EA.              || M 1–6.       ||        ||No  ||  ||
+|| OPC18 || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  ||
+|| OPC19 || LA. EA.              || M 1–6.       ||        ||No  ||  ||
+|| OPC20 || CA. EA.              || M 2, 4, 6.   ||P2,P3   ||Si  ||  ||
+|| OPC21 || LA. EA.              || M 1–6.       ||P2,P3   ||Si  ||  ||
+|| OPC22 || LA. EA. DA.          || M 1–6.       ||P2,P3   ||Si  ||  ||
+|| OPC23 || LA. EA               || M 1–6.       ||        ||No  ||  ||
+|| OPC24 || DA.                  || M 2, 4, 6.   ||P2,P3   ||Si  ||  || 
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
