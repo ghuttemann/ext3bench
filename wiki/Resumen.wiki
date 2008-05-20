@@ -75,7 +75,6 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Crear un archivo de 1 GB desde /dev/zero.
   # Copiar el archivo de 1 GB a otro directorio.
   # Mover el archivo de 1 GB a otro directorio
-  # Cat del archivo de 1 GB a /dev/null.
   # Borrar el archivo creado.
 
   ^1^ Esta operación se realizará aparte exclusivamente para medir la fragmentación.
@@ -108,8 +107,7 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 || OPC20 || CA. EA.              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
 || OPC21 || LA. EA.              || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
 || OPC22 || LA. EA. DA.          || M 1–6.       ||P2,P3   ||Si  ||  || C7 ||
-|| OPC23 || LA. EA               || M 1–6.       ||        ||No  ||  || C7 ||
-|| OPC24 || DA.                  || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
+|| OPC23 || DA.                  || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C7 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
