@@ -35,9 +35,6 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   _Operaciones_ ------- _Abreviatura_ ------- _Responsable_ ------- _Estado_
 
   # Crear Archivo.      *(CA)*             ghuttemann         semi-terminado
-{{{
-    void crear_archivos(int n, long long  cbytes, char * patron);
-}}}
   # Leer Archivo.       *(LA)*             ghuttemann             
     ## Secuencialmente. 
     ## Aleatoriamente.
