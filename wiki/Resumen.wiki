@@ -85,7 +85,7 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
- * “Cn” son los conjuntos de operaciones a implementar.
+ * “Cn” son los conjuntos de operaciones a implementar y secuencia a ejecutar.
  * "Gn" son los grupos según los parámetros que influyen.
 
 = Plan de implementación = 
