@@ -48,7 +48,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
 
 = Operaciones considerando las cargas (OPCx) =
 
-  # *c1000A:* Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
+  # *c1000A:* Crear 1000 archivos para pruebas de re-lectura.
   # *l1000A:* Leer secuencialmente los 1000 archivos creados. 
   # *rl1000A:* Releer secuencialmente los 1000 archivos creados.
   # *c2000A2m:* Crear 2000 archivos de 2 MB para accesos secuenciales y escrituras 
