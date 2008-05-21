@@ -72,16 +72,18 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
 || *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Grupo Param.*  || *Responsable* || *Conj. de Impl.*  ||
-|| c1000A    || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C1 || 
-|| l1000A    || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||  || C1 ||
-|| rl1000A   || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||  || C1 ||
-|| c2000A2m  || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C2 ||
-|| e2000A2m  || EA (S)  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C2 ||
-|| re2000A2m || EA (A)  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C2 ||
-|| lS2000A2m || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||  || C2 ||
-|| lA2000A2m || LA (A)  || BLs, LL  || pTB, pAT      || G2 ||  || C2 ||
-|| c10000D   || CD      || tCD      || pTB, pNJ, pSI || G1 ||  || C3 ||
-|| b10000Dsup|| BD      || tBD      || pTB, pNJ, pSI || G2 ||  || C3 ||
+|| c1000A    || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||fmancia|| C1 || 
+|| l1000A    || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||fmancia|| C1 ||
+|| rl1000A   || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||fmancia|| C1 ||
+|| c2000A2m  || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||mrodas || C2 ||
+|| e2000A2m  || EA (S)  || BEs, LE  || pTB, pNJ, pSI || G1 ||mrodas || C2 ||
+|| re2000A2m || EA (A)  || BEs, LE  || pTB, pNJ, pSI || G1 ||mrodas || C2 ||
+|| lS2000A2m || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||gha-nb || C2 ||
+|| lA2000A2m || LA (A)  || BLs, LL  || pTB, pAT      || G2 ||cparra || C2 ||
+|| c10000D   || CD      || tCD      || pTB, pNJ, pSI || G1 ||cparra || C3 ||
+|| b10000Dsup|| BD      || tBD      || pTB, pNJ, pSI || G2 ||cparra || C3 ||
+|| opFrag1   || Todos   || tTB      || pTB           ||    ||gha-nb || C4 ||
+|| opFrag2   || Todos   || tTB      || pTB           ||    ||gha-nb || C4 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
