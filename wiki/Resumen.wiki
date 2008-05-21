@@ -51,19 +51,20 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # *c1000A:* Crear 1000 archivos de tamaño igual al tamaño de bloque para pruebas de re-lectura.
   # *l1000A:* Leer los 1000 archivos creados. 
   # *rl1000A:* Releer los 1000 archivos creados.
-  # *c2000A5m:* Crear 2000 archivos de 5 MB para accesos secuenciales y escrituras 
+  # *c2000A5m:* Crear 2000 archivos de 2 MB para accesos secuenciales y escrituras 
   # *e2000A5m:* Escribir secuencialmente en los 2000 archivos.
   # *re2000A5m:* Reescribir aleatoriamente en los archivos.
   # *lS2000A5m:* Leer los 2000 archivos de forma secuencial
   # *lA2000A5m:* Leer los 2000 archivos de forma aleatoria.
-  # *c10000A1D:* Crear 10000 archivos  en un solo directorio.
+  # *c10000A1D:* Crear 10000 archivos en un directorio.
   # *bDir:* Borrar el directorio y todo su contenido.
   # *c1000D:* Crear 10000 directorios.  
   # *b1000Dsup:* Borrar el directorio que contiene los 10000 directorios.
-  # *c1GA:* Crear un archivo de 1 GB desde /dev/zero.
+  # *c1GA:* Crear un archivo de 1 GB.
+  # *l1GA:* Leer el archivo de 1 GB secuencialmente.
   # *cp1GA:* Copiar el archivo de 1 GB a otro directorio.
   # *mv1GA:* Mover el archivo de 1 GB a otro directorio
-  # *b1GA:* Borrar el archivo creado.
+  # *b1GA:* Borrar el archivo de 1GB.
   # *opFrag1: Crear, leer, agrandar y borrar archivos.^1^*
   # *opFrag2: Borrar los archivos más pequeños. ^1^*
 
@@ -77,23 +78,22 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
-|| *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* || *Conjunto* ||
-|| c1000A    || CA                   ||              ||pNJ, pSI, pAT||Si  ||  || C1 || 
-|| l1000A    || LA (S-A).            || BLs, 3, 5.   ||pTB, pAT   ||Si  ||  || C1 ||
-|| rl1000A   || LA (S-A).            || BLs, 3, 5.   ||pTB, pAT   ||Si  ||  || C1 ||
-|| c2000A5m  || CA, EA               || 8.         ||pTB, pSI, pAT||Si  ||  || C2 ||
-|| c2000A5m  || EA (S-A).            || BLs, 3, 5.   ||pTB, pNJ, pSI||Si  ||  || C3 ||
-|| e2000A5m  || EA (S).              || BEs, 4, 6.   ||pNJ, pSI   ||Si  ||  || C3 ||
-|| re2000A5m || EA (A).              || BEs, 4, 6.   ||pNJ, pSI   ||Si  ||  || C3 ||
-|| lS2000A5m || LA (S).              || BLs, 3, 5, 7.||pNJ, pSI   ||Si  ||  || C3 ||
-|| lA2000A5m || LA (A).              || BLs, 3, 5, 7.||pAT      ||Si  ||  || C3 ||
-|| c10000A1D || CD. CA. EA (S).      || BEs, 4, 6, 7.||pAT      ||Si  ||  || C4 ||
-|| bDir      || BA.                  || BLs, 3, 5, 7.||pAT      ||Si  ||  || C4 ||
-|| c10000    || BA. BD.              || BEs, 4, 6, 7.||pNJ, pSI   ||Si  ||  || C4 ||
-|| c1GA      || CD.                  || 7.         ||pNJ, pSI   ||Si  ||  || C5 ||
-|| cp1GA     || BD.                  || 7.         ||pNJ, pSI   ||Si  ||  || C5 ||
-|| mv1GA     || LA. EA.              || BLs, BEs, 3–6   ||pTB, pNJ, pSI||Si  ||  || C6 ||
-|| b1G       || LA. EA.              || BLs, BEs, 3–6   ||pTB, pNJ, pSI||Si  ||  || C6 ||
+|| *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* || *Conjunto*  ||
+|| c1000A    || CA              || BEs, LE       || pNJ, pSI, pAT || Si ||  || C1 || 
+|| l1000A    || LA (S-A)        || BLs, LL       || pTB, pAT      || Si ||  || C1 ||
+|| rl1000A   || LA (S-A)        || BLs, LL       || pTB, pAT      || Si ||  || C1 ||
+|| c2000A5m  || CA, EA          || 8.            || pTB, pSI, pAT || Si ||  || C2 ||
+|| c2000A5m  || EA (S-A)        || BLs, 3, 5.    || pTB, pNJ, pSI || Si ||  || C3 ||
+|| e2000A5m  || EA (S)          || BEs, 4, 6.    || pNJ, pSI      || Si ||  || C3 ||
+|| re2000A5m || EA (A)          || BEs, 4, 6.    || pNJ, pSI      || Si ||  || C3 ||
+|| lS2000A5m || LA (S)          || BLs, 3, 5, 7. || pNJ, pSI      || Si ||  || C3 ||
+|| lA2000A5m || LA (A)          || BLs, 3, 5, 7. || pAT           || Si ||  || C3 ||
+|| c10000A1D || CD, CA  EA (S)  || BEs, 4, 6, 7. || pAT           || Si ||  || C4 ||
+|| bDir      || BA              || BLs, 3, 5, 7. || pAT           || Si ||  || C4 ||
+|| c10000    || BA, BD          || BEs, 4, 6, 7. || pNJ, pSI      || Si ||  || C4 ||
+|| c1GA      || CA              || 7.            || pNJ, pSI      || Si ||  || C5 ||
+|| l1GA      || LA              || BLs, LL       || pTB, pAT      || Si ||  || C5 ||
+|| b1G       || LA, EA          || BLs, BEs, 3–6 || pTB, pNJ, pSI || Si ||  || C5 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
