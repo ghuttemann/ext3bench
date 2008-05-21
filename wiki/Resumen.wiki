@@ -58,9 +58,6 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # *lA2000A2m:* Leer los 2000 archivos de forma aleatoria.
   # *c10000D:* Crear 10000 directorios en un directorio.
   # *b10000Dsup:* Borrar el directorio que contiene los 10000 directorios.
-  # *c1GA:* Crear un archivo de 1 GB.
-  # *l1GA:* Leer secuencialmente el archivo de 1 GB.
-  # *b1GA:* Borrar el archivo de 1GB.
   # *opFrag1: Crear, leer, agrandar y borrar archivos.^1^*
   # *opFrag2: Borrar los archivos más pequeños. ^1^*
 
@@ -85,9 +82,6 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 || lA2000A2m || LA (A)          || BLs, LL       || pAT           || Si ||  || C3 ||
 || c10000D   || CD              || tCD           || pTB, pNJ, pSI || Si ||  || C4 ||
 || b10000Dsup|| BD              || tBD           || pTB, pNJ, pSI || Si ||  || C4 ||
-|| c1GA      || CA              || 7.            || pNJ, pSI      || Si ||  || C5 ||
-|| l1GA      || LA              || BLs, LL       || pTB, pAT      || Si ||  || C5 ||
-|| b1G       || LA, EA          || BLs, BEs, 3–6 || pTB, pNJ, pSI || Si ||  || C5 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
