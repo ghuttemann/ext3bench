@@ -58,8 +58,10 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # *lA2000A2m:* Leer los 2000 archivos de forma aleatoria.
   # *c10000D:* Crear 10000 directorios en un directorio.
   # *b10000Dsup:* Borrar el directorio que contiene los 10000 directorios.
-  # *opFrag1: Crear, leer, agrandar y borrar archivos.^1^*
-  # *opFrag2: Borrar los archivos más pequeños. ^1^*
+  # *c1000Avac:* Crear 1000 archivos vacíos.
+  # *e1000A600b:* Escribir 600 bytes en cada archivo (repetir 1000 veces).
+  # *t1000Amitad:* Truncar cada archivo a la mitad de su longitud.
+  # *a1000A600b:* Agregar 600 bytes en cada archivo (repetir 1000 veces).
 
   ^1^ Esta operación se realizará aparte exclusivamente para medir la fragmentación.
 
@@ -72,23 +74,26 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
 || *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Grupo Param.*  || *Responsable* || *Conj. de Impl.*  ||
-|| c1000A    || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||fmancia|| C1 || 
-|| l1000A    || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||fmancia|| C1 ||
-|| rl1000A   || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||fmancia|| C1 ||
-|| c2000A2m  || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||mrodas || C2 ||
-|| e2000A2m  || EA (S)  || BEs, LE  || pTB, pNJ, pSI || G1 ||mrodas || C2 ||
-|| re2000A2m || EA (A)  || BEs, LE  || pTB, pNJ, pSI || G1 ||mrodas || C2 ||
-|| lS2000A2m || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||gha-nb || C2 ||
-|| lA2000A2m || LA (A)  || BLs, LL  || pTB, pAT      || G2 ||cparra || C2 ||
-|| c10000D   || CD      || tCD      || pTB, pNJ, pSI || G1 ||cparra || C3 ||
-|| b10000Dsup|| BD      || tBD      || pTB, pNJ, pSI || G2 ||cparra || C3 ||
-|| opFrag1   || Todos   || PF       || pTB           ||    ||gha-nb || C4 ||
-|| opFrag2   || Todos   || PF       || pTB           ||    ||gha-nb || C4 ||
+|| c1000A      || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 || fmancia    || C1 || 
+|| l1000A      || LA (S)  || BLs, LL  || pTB, pAT      || G2 || fmancia    || C1 ||
+|| rl1000A     || LA (S)  || BLs, LL  || pTB, pAT      || G2 || fmancia    || C1 ||
+|| c2000A2m    || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 || mrodas     || C2 ||
+|| e2000A2m    || EA (S)  || BEs, LE  || pTB, pNJ, pSI || G1 || mrodas     || C2 ||
+|| re2000A2m   || EA (A)  || BEs, LE  || pTB, pNJ, pSI || G1 || mrodas     || C2 ||
+|| lS2000A2m   || LA (S)  || BLs, LL  || pTB, pAT      || G2 || cparra     || C2 ||
+|| lA2000A2m   || LA (A)  || BLs, LL  || pTB, pAT      || G2 || cparra     || C2 ||
+|| c10000D     || CD      || tCD      || pTB, pNJ, pSI || G1 || cparra     || C3 ||
+|| b10000Dsup  || BD      || tBD      || pTB, pNJ, pSI || G2 || cparra     || C3 ||
+|| c1000Avac   || --      || PF       || pTB           || G3 || ghuttemann || C4 ||
+|| e1000A600b  || --      || PF       || pTB           || G3 || ghuttemann || C4 ||
+|| t1000Amitad || --      || PF       || pTB           || G3 || ghuttemann || C4 ||
+|| a1000A600b  || --      || PF       || pTB           || G3 || ghuttemann || C4 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
  * “Cn” son los conjuntos de operaciones a implementar y secuencia a ejecutar.
  * "Gn" son los grupos según los parámetros que influyen.
+ * En las últimas operaciones no se consideran operaciones básicas ya que lo que se quiere inducir es solamente el aumento de la fragmentación y no otras métricas.
 
 = Plan de implementación = 
 
