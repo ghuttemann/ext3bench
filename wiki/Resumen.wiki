@@ -91,7 +91,8 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
- * "Gn" son los grupos según los parámetros que influyen.
+ * "Gn" son los grupos según los parámetros que influyen. Cada G incluye el mismo grupo de parámetros, y al mismo tiempo, incluye solo operaciones de lectura, escritura
+o la parte para fragmentación.
  * En las últimas operaciones no se consideran operaciones básicas ya que lo que se quiere inducir es solamente el aumento de la fragmentación y no otras métricas.
  * Los "Mixs" de implementación, permiten agrupar las operaciones que vamos a implementar según lo que en general se está probando en ese Mix. Así tenemos:
    # _*mLect:*_ 1^ra^ Mezcla de operaciones de lectura.
