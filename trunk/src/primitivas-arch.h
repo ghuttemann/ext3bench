@@ -98,4 +98,37 @@ void leer_archivo(FILE *arch, char *nombre, int cbytes, int tam_bloque);
  */
 void io_aleatorio(FILE *arch, char *nombre, int cant, int tam_bloque, int escritura);
 
+/*
+ * Función que realiza la eliminación de un archivo, o de un grupo de 
+ * archivos definidos por: 
+ * 
+ *   - *dir   : path del directorio donde se encuentran los archivos a borrar
+ *   - narch  : cantidad de archivos a borrar
+ *   - *patron: patron de nombramiento de los archivos
+ */
+void borrar_archivo(char *dir, int narch, char *patron);
+
+/*
+ * Función que realiza la creación de un directorio, o de un grupo de 
+ * directorios definidos por: 
+ * 
+ *   - *path    : path del directorio donde se encuentran los directorios 
+ *                a crear
+ *   - *dirname : patrón de los nombres de directorios
+ *   - cantidad : cantidad de directorios a crear
+ */
+void crear_directorio(char *path, char *dirname, int cantidad);
+
+/*
+ * Función que realiza la creación de un directorio, o de un grupo de 
+ * directorios definidos por: 
+ * 
+ *   - *path    : path del directorio donde se encuentran los directorios 
+ *                a borrar
+ *   - *dirname : patrón de los nombres de directorios
+ *   - cantidad : cantidad de directorios a crear
+ */
+void borrar_directorio(char *path, char *dirname, int cantidad);
+
+
 #endif /*PRIMITIVAS_H_*/

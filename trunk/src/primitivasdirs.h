@@ -13,27 +13,20 @@
 #endif /*OPDIRS_H_*/
 
 
-#ifndef STDIO_H_
-#define STDIO_H_
-#endif
 
-#ifndef STRING_H_
-#define STRING_H_
-#endif
-
-#ifndef STDLIB_H_
-#define STDLIB_H_
-#endif
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#define PATH_BUFF_SIZE 256
 
 /* 
  * Interfaces de funciones básicas sobre directorios. 
  */
-int creardirs(const char *dirname, mode_t mode, int cantidad);
-void borrardirs(const char *dirname, int cantidad);
+int creardirs(char *dirname, mode_t mode, int cantidad);
+void borrardirs(char *dirname, int cantidad);
 
 
 

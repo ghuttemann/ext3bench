@@ -2,23 +2,25 @@
  * Pruebas básicas de las operaciones para crear y borrar directorios
  */
 
-#include "primitivasdirs.h" 
+#include "primitivas-arch.h" 
 
 int main(char *argv) {
 	
 	char *dirname = "testDir";
+	char *path = "/tmp/";
 	
 	// Prueba de crear un directorio.
-	int result = creardirs(dirname,0777,1);
+	
+	crear_directorio(path,dirname,1);
 
+	//borrar_directorio(path,dirname,1);
+	
 	// Prueba de crear muchos directorios.
-	result = creardirs(dirname,0777,20);
+	crear_directorio(path,dirname,20);
+	
+	//borrar_directorio(path,dirname,20);
 	
 	
-	borrardirs(dirname,1);
-	
-    borrardirs(dirname,20);
-	
-	
-	return result;
+	//return result;
+	return 0;
 }
