@@ -62,8 +62,6 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # *b1000Dsup:* Borrar el directorio que contiene los 10000 directorios.
   # *c1GA:* Crear un archivo de 1 GB.
   # *l1GA:* Leer el archivo de 1 GB secuencialmente.
-  # *cp1GA:* Copiar el archivo de 1 GB a otro directorio.
-  # *mv1GA:* Mover el archivo de 1 GB a otro directorio
   # *b1GA:* Borrar el archivo de 1GB.
   # *opFrag1: Crear, leer, agrandar y borrar archivos.^1^*
   # *opFrag2: Borrar los archivos más pequeños. ^1^*
