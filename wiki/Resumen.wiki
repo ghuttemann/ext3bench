@@ -82,8 +82,8 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 || lA2000A2m || LA (A)  || BLs, LL  || pTB, pAT      || G2 ||cparra || C2 ||
 || c10000D   || CD      || tCD      || pTB, pNJ, pSI || G1 ||cparra || C3 ||
 || b10000Dsup|| BD      || tBD      || pTB, pNJ, pSI || G2 ||cparra || C3 ||
-|| opFrag1   || Todos   || tTB      || pTB           ||    ||gha-nb || C4 ||
-|| opFrag2   || Todos   || tTB      || pTB           ||    ||gha-nb || C4 ||
+|| opFrag1   || Todos   || PF       || pTB           ||    ||gha-nb || C4 ||
+|| opFrag2   || Todos   || PF       || pTB           ||    ||gha-nb || C4 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
