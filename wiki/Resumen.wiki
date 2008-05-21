@@ -71,21 +71,22 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
-|| *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* || *Conjunto*  ||
-|| c1000A    || CA, EA          || BEs, LE       || pNJ, pSI, pAT || Si ||  || C1 || 
-|| l1000A    || LA (S)          || BLs, LL       || pTB, pAT      || Si ||  || C1 ||
-|| rl1000A   || LA (S)          || BLs, LL       || pTB, pAT      || Si ||  || C1 ||
-|| c2000A2m  || CA, EA          || BEs, LE       || pTB, pSI, pAT || Si ||  || C2 ||
-|| e2000A2m  || EA (S)          || BEs, LE       || pTB, pNJ, pSI || Si ||  || C3 ||
-|| re2000A2m || EA (A)          || BEs, LE       || pNJ, pSI      || Si ||  || C3 ||
-|| lS2000A2m || LA (S)          || BLs, LL       || pNJ, pSI      || Si ||  || C3 ||
-|| lA2000A2m || LA (A)          || BLs, LL       || pAT           || Si ||  || C3 ||
-|| c10000D   || CD              || tCD           || pTB, pNJ, pSI || Si ||  || C4 ||
-|| b10000Dsup|| BD              || tBD           || pTB, pNJ, pSI || Si ||  || C4 ||
+|| *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Grupo Param.*  || *Responsable* || *Conj. de Impl.*  ||
+|| c1000A    || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C1 || 
+|| l1000A    || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||  || C1 ||
+|| rl1000A   || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||  || C1 ||
+|| c2000A2m  || CA, EA  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C2 ||
+|| e2000A2m  || EA (S)  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C2 ||
+|| re2000A2m || EA (A)  || BEs, LE  || pTB, pNJ, pSI || G1 ||  || C2 ||
+|| lS2000A2m || LA (S)  || BLs, LL  || pTB, pAT      || G2 ||  || C2 ||
+|| lA2000A2m || LA (A)  || BLs, LL  || pTB, pAT      || G2 ||  || C2 ||
+|| c10000D   || CD      || tCD      || pTB, pNJ, pSI || G1 ||  || C3 ||
+|| b10000Dsup|| BD      || tBD      || pTB, pNJ, pSI || G2 ||  || C3 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
- * “Cn” significa el conjunto n de operaciones relacionadas.
+ * “Cn” son los conjuntos de operaciones a implementar.
+ * "Gn" son los grupos según los parámetros que influyen.
 
 = Plan de implementación = 
 
