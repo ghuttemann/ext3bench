@@ -59,7 +59,7 @@ void crear_archivo(char *dir, int narch, int cbytes, int tam_bloque, char *patro
 	 * antes de cerrarlo.
 	 */
 	for (i=0; i < narch; i++) {
-		sprintf(path_buff, "%s-%d", patron, i);
+		sprintf(path_buff, "%s%s-%d", dir, patron, i);
 		
 		printf("Creando el archivo '%s'...\n", path_buff);
 		tmp = abrir_archivo(path_buff, "w");
@@ -181,7 +181,7 @@ void io_aleatorio(FILE *arch, char *nombre, int cant, int tam_bloque, int escrit
 		
 		#ifndef IO_OPER
 			#define IO_OPER "lectura"
-		#endif
+	    #endif
 		
 		buffer  = INPUT_BUFFER;
 	}
@@ -209,3 +209,117 @@ void io_aleatorio(FILE *arch, char *nombre, int cant, int tam_bloque, int escrit
 		}
 	}
 }
+
+
+void borrar_archivo(char *dir, int narch, char *patron) {
+    int i=0;
+	char path_buff[PATH_BUFF_SIZE + 1];
+	int tmp;
+	
+	/*
+	 * Verificamos que el path del directorio no sea muy largo.
+	 * Se asume que entre el patron y el numero agregado, no se
+	 * superan los 50 caracteres.
+	 */
+	int maxlen = strlen(dir) + strlen(patron) + 15;
+	if (maxlen > PATH_BUFF_SIZE) {
+		fprintf(stderr, "Path '%s' demasiado largo (%d, max=%d)",
+				dir, strlen(dir), 200);
+		exit(1);
+	}
+	
+	/*
+	 * Borramos la cantidad de archivos especificados.
+	 * 
+	 */
+	for (i=0; i < narch; i++) {
+		sprintf(path_buff, "%s-%d", patron, i);
+		
+		printf("Creando el archivo '%s'...\n", path_buff);
+		tmp = remove(path_buff);
+		
+		if (tmp == -1) {
+			fprintf(stderr, "borrar_archivo(): Error en borrado de archivo '%s'\n",
+					path_buff);
+			perror(NULL);
+			exit(1);
+		}	
+	}	
+	
+}
+
+
+void crear_directorio(char *path, char *dirname, int cantidad) {
+	
+	char path_buff[PATH_BUFF_SIZE + 1];
+	int i;
+	
+	/* 
+	 * Verificamos que el path del directorio no sea muy largo.
+	 * Se asume que entre el patron y el numero agregado, no se
+	 * superan los 50 caracteres.
+	 */
+	int maxlen = strlen(path) + strlen(dirname) + 15;
+	if (maxlen > PATH_BUFF_SIZE) {
+		fprintf(stderr, "Path '%s' demasiado largo (%d, max=%d)",
+			path, strlen(path), 200);
+		exit(1);
+	}
+	
+		
+	for (i = 0; i < cantidad; ++i) {
+		sprintf(path_buff, "%s%s-%d", path, dirname, i);
+					
+		printf("Creando el directorio '%s'...\n", path_buff);			
+					
+		int result = mkdir(path_buff,0777);
+		// Verificamos error
+		if (result == -1) {
+			fprintf(stderr, "crear_directorio(): Error al crear directorio '%s'\n",
+					 dirname);
+			perror(NULL);
+			exit(1);
+		}		
+	}		
+	
+}
+
+
+void borrar_directorio(char *path, char *dirname, int cantidad){
+	
+	char path_buff[PATH_BUFF_SIZE + 1];
+	int i;
+	
+	/* 
+	 * Verificamos que el path del directorio no sea muy largo.
+	 * Se asume que entre el patron y el numero agregado, no se
+	 * superan los 50 caracteres.
+	 */
+	int maxlen = strlen(path) + strlen(dirname) + 15;
+	if (maxlen > PATH_BUFF_SIZE) {
+		fprintf(stderr, "Path '%s' demasiado largo (%d, max=%d)",
+			path, strlen(path), 200);
+		exit(1);
+	}
+	
+		
+	for (i = 0; i < cantidad; ++i) {
+		sprintf(path_buff, "%s%s-%d", path, dirname, i);
+					
+		printf("Borrando el directorio '%s'...\n", path_buff);			
+					
+		int result = rmdir(path_buff);
+		// Verificamos error
+		if (result == -1) {
+			fprintf(stderr, "crear_directorio(): Error al crear directorio '%s'\n",
+					 dirname);
+			perror(NULL);
+			exit(1);
+		}		
+	}	
+}
+
+
+// TODO --> prueba para fragmentación: hacer un mix de operaciones
+
+
