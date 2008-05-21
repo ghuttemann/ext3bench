@@ -58,10 +58,10 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # *lA2000A2m:* Leer los 2000 archivos de forma aleatoria.
   # *c10000D:* Crear 10000 directorios en un directorio.
   # *b10000Dsup:* Borrar el directorio que contiene los 10000 directorios.
-  # *c1000Avac:* Crear 1000 archivos vacíos.
-  # *e1000A600b:* Escribir 600 bytes en cada archivo (repetir 1000 veces).
-  # *t1000Amitad:* Truncar cada archivo a la mitad de su longitud.
-  # *a1000A600b:* Agregar 600 bytes en cada archivo (repetir 1000 veces).
+  # *c1000Avac:* Crear 1000 archivos vacíos.^1^
+  # *e1000A600b:* Escribir 600 bytes en cada archivo (repetir 1000 veces).^1^
+  # *t1000Amitad:* Truncar cada archivo a la mitad de su longitud.^1^
+  # *a1000A600b:* Agregar 600 bytes en cada archivo (repetir 1000 veces).^1^
 
   ^1^ Esta operación se realizará aparte exclusivamente para medir la fragmentación.
 
