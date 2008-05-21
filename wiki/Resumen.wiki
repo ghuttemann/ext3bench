@@ -40,7 +40,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # Escribir Archivo.   *(EA)*             ghuttemann             
     ## Secuencialmente.
     ## Aleatoriamente.             
-  # Borrar Archivo.     *(DA)*             cparra
+  # Borrar Archivo.     *(BA)*             cparra
   # Crear Directorio.   *(CD)*             cparra             
   # Borrar Directorio.  *(BD)*             cparra
 
@@ -79,21 +79,21 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 
 || *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* || *Conjunto* ||
 || c1000A    || CA                   ||              ||pNJ, pSI, pAT||Si  ||  || C1 || 
-|| l1000A    || LA (S-A).            || M BLs, 3, 5.   ||pTB, pAT   ||Si  ||  || C1 ||
-|| rl1000A   || LA (S-A).            || M BLs, 3, 5.   ||pTB, pAT   ||Si  ||  || C1 ||
-|| c2000A5m  || CA, EA               || M 8.         ||pTB, pSI, pAT||Si  ||  || C2 ||
-|| c2000A5m  || EA (S-A).            || M BLs, 3, 5.   ||pTB, pNJ, pSI||Si  ||  || C3 ||
-|| e2000A5m  || EA (S).              || M 2, 4, 6.   ||pNJ, pSI   ||Si  ||  || C3 ||
-|| re2000A5m || EA (A).              || M 2, 4, 6.   ||pNJ, pSI   ||Si  ||  || C3 ||
-|| lS2000A5m || LA (S).              || M BLs, 3, 5, 7.||pNJ, pSI   ||Si  ||  || C3 ||
-|| lA2000A5m || LA (A).              || M BLs, 3, 5, 7.||pAT      ||Si  ||  || C3 ||
-|| c10000A1D || CD. CA. EA (S).      || M 2, 4, 6, 7.||pAT      ||Si  ||  || C4 ||
-|| bDir      || BA.                  || M BLs, 3, 5, 7.||pAT      ||Si  ||  || C4 ||
-|| c10000    || DA. BD.              || M 2, 4, 6, 7.||pNJ, pSI   ||Si  ||  || C4 ||
-|| c1GA      || CD.                  || M 7.         ||pNJ, pSI   ||Si  ||  || C5 ||
-|| cp1GA     || BD.                  || M 7.         ||pNJ, pSI   ||Si  ||  || C5 ||
-|| mv1GA     || LA. EA.              || M BLs, 2–6   ||pTB, pNJ, pSI||Si  ||  || C6 ||
-|| b1G       || LA. EA.              || M BLs, 2–6   ||pTB, pNJ, pSI||Si  ||  || C6 ||
+|| l1000A    || LA (S-A).            || BLs, 3, 5.   ||pTB, pAT   ||Si  ||  || C1 ||
+|| rl1000A   || LA (S-A).            || BLs, 3, 5.   ||pTB, pAT   ||Si  ||  || C1 ||
+|| c2000A5m  || CA, EA               || 8.         ||pTB, pSI, pAT||Si  ||  || C2 ||
+|| c2000A5m  || EA (S-A).            || BLs, 3, 5.   ||pTB, pNJ, pSI||Si  ||  || C3 ||
+|| e2000A5m  || EA (S).              || BEs, 4, 6.   ||pNJ, pSI   ||Si  ||  || C3 ||
+|| re2000A5m || EA (A).              || BEs, 4, 6.   ||pNJ, pSI   ||Si  ||  || C3 ||
+|| lS2000A5m || LA (S).              || BLs, 3, 5, 7.||pNJ, pSI   ||Si  ||  || C3 ||
+|| lA2000A5m || LA (A).              || BLs, 3, 5, 7.||pAT      ||Si  ||  || C3 ||
+|| c10000A1D || CD. CA. EA (S).      || BEs, 4, 6, 7.||pAT      ||Si  ||  || C4 ||
+|| bDir      || BA.                  || BLs, 3, 5, 7.||pAT      ||Si  ||  || C4 ||
+|| c10000    || BA. BD.              || BEs, 4, 6, 7.||pNJ, pSI   ||Si  ||  || C4 ||
+|| c1GA      || CD.                  || 7.         ||pNJ, pSI   ||Si  ||  || C5 ||
+|| cp1GA     || BD.                  || 7.         ||pNJ, pSI   ||Si  ||  || C5 ||
+|| mv1GA     || LA. EA.              || BLs, BEs, 3–6   ||pTB, pNJ, pSI||Si  ||  || C6 ||
+|| b1G       || LA. EA.              || BLs, BEs, 3–6   ||pTB, pNJ, pSI||Si  ||  || C6 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
