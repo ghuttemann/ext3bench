@@ -78,22 +78,22 @@ La siguiente tabla resume todas nuestras operaciones, y su relación con los par
 También se aclara por cada Operación, el responsble de implementarla y probarla antes de incluir en el programa principal de evaluación. 
 
 || *Operaciones* || *Operaciones Básicas* || *Métricas* || *Parámetros* || *Implementar*  || *Responsable* || *Conjunto* ||
-|| c1000A    || CA                   ||              ||P2,P3,P4||Si  ||  || C1 || 
-|| l1000A    || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  || C1 ||
-|| rl1000A   || LA (S-A).            || M 1, 3, 5.   ||P1,P4   ||Si  ||  || C1 ||
-|| c2000A5m  || CA, EA               || M 8.         ||P1,P3,P4||Si  ||  || C2 ||
-|| c2000A5m  || EA (S-A).            || M 1, 3, 5.   ||P1,P2,P3||Si  ||  || C3 ||
-|| e2000A5m  || EA (S).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C3 ||
-|| re2000A5m || EA (A).              || M 2, 4, 6.   ||P2,P3   ||Si  ||  || C3 ||
-|| lS2000A5m || LA (S).              || M 1, 3, 5, 7.||P2,P3   ||Si  ||  || C3 ||
-|| lA2000A5m || LA (A).              || M 1, 3, 5, 7.||P4      ||Si  ||  || C3 ||
-|| c10000A1D || CD. CA. EA (S).      || M 2, 4, 6, 7.||P4      ||Si  ||  || C4 ||
-|| bDir      || BA.                  || M 1, 3, 5, 7.||P4      ||Si  ||  || C4 ||
-|| c10000    || DA. BD.              || M 2, 4, 6, 7.||P2,P3   ||Si  ||  || C4 ||
-|| c1GA      || CD.                  || M 7.         ||P2,P3   ||Si  ||  || C5 ||
-|| cp1GA     || BD.                  || M 7.         ||P2,P3   ||Si  ||  || C5 ||
-|| mv1GA     || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  || C6 ||
-|| b1G       || LA. EA.              || M 1–6.       ||P1,P2,P3||Si  ||  || C6 ||
+|| c1000A    || CA                   ||              ||pNJ,pSI,pAT||Si  ||  || C1 || 
+|| l1000A    || LA (S-A).            || M 1, 3, 5.   ||pTB,pAT   ||Si  ||  || C1 ||
+|| rl1000A   || LA (S-A).            || M 1, 3, 5.   ||pTB,pAT   ||Si  ||  || C1 ||
+|| c2000A5m  || CA, EA               || M 8.         ||pTB,pSI,pAT||Si  ||  || C2 ||
+|| c2000A5m  || EA (S-A).            || M 1, 3, 5.   ||pTB,pNJ,pSI||Si  ||  || C3 ||
+|| e2000A5m  || EA (S).              || M 2, 4, 6.   ||pNJ,pSI   ||Si  ||  || C3 ||
+|| re2000A5m || EA (A).              || M 2, 4, 6.   ||pNJ,pSI   ||Si  ||  || C3 ||
+|| lS2000A5m || LA (S).              || M 1, 3, 5, 7.||pNJ,pSI   ||Si  ||  || C3 ||
+|| lA2000A5m || LA (A).              || M 1, 3, 5, 7.||pAT      ||Si  ||  || C3 ||
+|| c10000A1D || CD. CA. EA (S).      || M 2, 4, 6, 7.||pAT      ||Si  ||  || C4 ||
+|| bDir      || BA.                  || M 1, 3, 5, 7.||pAT      ||Si  ||  || C4 ||
+|| c10000    || DA. BD.              || M 2, 4, 6, 7.||pNJ,pSI   ||Si  ||  || C4 ||
+|| c1GA      || CD.                  || M 7.         ||pNJ,pSI   ||Si  ||  || C5 ||
+|| cp1GA     || BD.                  || M 7.         ||pNJ,pSI   ||Si  ||  || C5 ||
+|| mv1GA     || LA. EA.              || M 1–6.       ||pTB,pNJ,pSI||Si  ||  || C6 ||
+|| b1G       || LA. EA.              || M 1–6.       ||pTB,pNJ,pSI||Si  ||  || C6 ||
 
  * “A” significa aleatorio.
  * “S” significa secuencial.
