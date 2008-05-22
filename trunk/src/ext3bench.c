@@ -56,12 +56,12 @@ int main(int argc, char **argv){
 
 	//Ejecucion de las operaciones
 	//MLECT ##################################################################
-	mLect(1000, IO_BUFF_SIZE * 1000, "patronlect", mLectDir);
+	mLect(1000, IO_BUFF_SIZE * 1000, "patronlect", mLectDir, salida);
 	//########################################################################
 
 	
 	//MESCR ##################################################################
-	mEscr(2000, 2000000, "patronescr", 5, mEscrDir);
+	mEscr(2000, 2000000, "patronescr", 5, mEscrDir, salida);
 	//########################################################################
 	
 	
