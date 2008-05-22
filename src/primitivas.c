@@ -302,7 +302,6 @@ void crear_directorio(char *path, char *dirname, int cantidad) {
 
 void crear_un_directorio(char *path, char *dirname) {
 	char path_buff[PATH_BUFF_SIZE + 1];
-	int i;
 	
 	sprintf(path_buff, "%s%s", path, dirname);
 	printf("Creando el directorio '%s'...\n", path_buff);			
