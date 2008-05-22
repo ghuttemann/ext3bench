@@ -56,8 +56,8 @@ Se puede manipular editando /etc/fstab con lo siguiente:
   # *re2000A2m:* Reescribir aleatoriamente en los 2000 archivos.
   # *lS2000A2m:* Leer los 2000 archivos de forma secuencial.
   # *lA2000A2m:* Leer los 2000 archivos de forma aleatoria.
-  # *c10000D:* Crear 10000 directorios en un directorio.
-  # *b10000Dsup:* Borrar el directorio que contiene los 10000 directorios.
+  # *c100000D:* Crear 100000 directorios.
+  # *b100000D:* Borrar los 10000 directorios.
   # *c1000Avac:* Crear 1000 archivos vacíos.^1^
   # *e1000A600b:* Escribir 600 bytes en cada archivo (repetir 1000 veces).^1^
   # *t1000Amitad:* Truncar cada archivo a la mitad de su longitud.^1^
@@ -67,7 +67,7 @@ Se puede manipular editando /etc/fstab con lo siguiente:
 
   _*Observación: *_ Los códigos asociados a cada uno de los elementos de más arriba, fueron asignados para su fácil asociación en los cuadros y explicaciones posteriores.
 
-= Relaciones de ls operacione con las Métricas y Parámetros =
+= Relaciones de las operaciones con las Métricas y Parámetros =
 
 La siguiente tabla resume todas nuestras operaciones, y su relación con los parámetros y métricas que se quieren medir. 
 
@@ -82,8 +82,8 @@ También se aclara por cada Operación, el responsble de implementarla y probarl
 || re2000A2m   || EA (A)  || BEs, LE  || pTB, pNJ, pSI || G1 || mrodas     || mEscr ||
 || lS2000A2m   || LA (S)  || BLs, LL  || pTB, pAT      || G2 || cparra     || mLect2||
 || lA2000A2m   || LA (A)  || BLs, LL  || pTB, pAT      || G2 || cparra     || mLect2||
-|| c10000D     || CD      || tCD      || pTB, pNJ, pSI || G1 || cparra     || mDirs ||
-|| b10000Dsup  || BD      || tBD      || pTB, pNJ, pSI || G2 || cparra     || mDirs ||
+|| c100000D    || CD      || tCD      || pTB, pNJ, pSI || G1 || cparra     || mDirs ||
+|| b100000D    || BD      || tBD      || pTB, pNJ, pSI || G2 || cparra     || mDirs ||
 || c1000Avac   || --      || PF       || pTB           || G3 || ghuttemann || mFrag ||
 || e1000A600b  || --      || PF       || pTB           || G3 || ghuttemann || mFrag ||
 || t1000Amitad || --      || PF       || pTB           || G3 || ghuttemann || mFrag ||
