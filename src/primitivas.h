@@ -151,6 +151,17 @@ void borrar_archivo(char *dir, int narch, char *patron);
  */
 void crear_directorio(char *path, char *dirname, int cantidad);
 
+
+/*
+ * Función que realiza la creación de un solo directorio
+ * 
+ *   - *path    : path del directorio donde se encuentran el directorio
+ *                a crear
+ *   - *dirname : nombre del directorio a crear
+ */
+void crear_un_directorio(char *path, char *dirname);
+
+
 /*
  * Función que realiza la creación de un directorio, o de un grupo de 
  * directorios definidos por: 

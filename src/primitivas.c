@@ -300,6 +300,24 @@ void crear_directorio(char *path, char *dirname, int cantidad) {
 	}
 }
 
+void crear_un_directorio(char *path, char *dirname) {
+	char path_buff[PATH_BUFF_SIZE + 1];
+	int i;
+	
+	sprintf(path_buff, "%s%s", path, dirname);
+	printf("Creando el directorio '%s'...\n", path_buff);			
+
+	int result = mkdir(path_buff, 0777);
+	// Verificamos error
+	if (result == -1) {
+		fprintf(stderr, "crear_directorio(): Error al crear directorio '%s'\n",
+				 dirname);
+		perror(NULL);
+		exit(1);
+	}
+
+}
+
 void borrar_directorio(char *path, char *dirname, int cantidad) {
 	char path_buff[PATH_BUFF_SIZE + 1];
 	int i;
