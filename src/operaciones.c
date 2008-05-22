@@ -13,6 +13,7 @@
  */ 
 
 #include "primitivas.h"
+#include "salida-metricas.h"
 
 
 //OPERACIONES
@@ -26,17 +27,25 @@
  * "patron_archivos" es el patron de nombres de archivos
  * "subdir" directorio a crear
  */
-
-void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir)
+void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir, FILE * log)
 {
 	char archcompleto[PATH_BUFF_SIZE + 1]; 
 	int i = 0;
-
-	//OPERACION - crear "veces" archivos
-	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
+	long long t1,t2;
 	
+	//OPERACION - crear "veces" archivos
+	t1 = tiempo_milis();
+	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
+	t2 = tiempo_milis();
+	
+	result_t res1 = {0};
+	sprintf(res1.testId, "%s", "c1000A");
+	res1.BEs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	print_test_result(log, &res1);
+
 
 	//OPERACION  - leer los arch creados	
+	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
@@ -44,8 +53,19 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 		leer_archivo(tmparch, archcompleto, tamanho, IO_BUFF_SIZE);
 		fclose(tmparch);
 	}
+	t2 = tiempo_milis();
+
+	result_t res2 = {0};
+	sprintf(res2.testId, "%s", "l1000A");
+	res2.BLs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	print_test_result(log, &res2);
+
+
+
+
 
 	//OPERACION - RE-leer  los arch creados	
+	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
@@ -53,6 +73,13 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 		leer_archivo(tmparch, archcompleto, tamanho, IO_BUFF_SIZE);
 		fclose(tmparch);
 	}
+	t2 = tiempo_milis();
+
+	result_t res3 = {0};
+	sprintf(res3.testId, "%s", "rl1000A");
+	res3.BLs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	print_test_result(log, &res3);
+
 }
 
 
@@ -66,16 +93,28 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
  * "veces_aleatorio" cantidad de veces que se escribe
  * "subdir" directorio a crear
  */
-void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_aleatorio, char * subdir)
+void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_aleatorio, char * subdir, FILE * log)
 {
+	long long t1,t2;
 	char archcompleto[PATH_BUFF_SIZE + 1]; 
 	int i = 0;
 
 	//OPERACION - crear "cant_archivos" archivos
+	t1 = tiempo_milis();
 	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
-	
+	t2 = tiempo_milis();
+
+
+	result_t res1 = {0};
+	sprintf(res1.testId, "%s", "c2000A2m");
+	res1.BEs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	print_test_result(log, &res1);	
+
+
+
 
 	//OPERACION - RE-escritura aleatoria de los arch creados	
+	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
@@ -84,6 +123,13 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 		fclose(tmparch);
 
 	}
+	t2 = tiempo_milis();
+
+	result_t res2 = {0};
+	sprintf(res2.testId, "%s", "re2000A2m");
+	res2.BEs = (IO_BUFF_SIZE* veces_aleatorio ) / ((t2 - t1)/1000.0);
+	print_test_result(log, &res2);
+
 }
 
 
