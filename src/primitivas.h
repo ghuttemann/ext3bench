@@ -182,8 +182,8 @@ void borrar_directorio(char *path, char *dirname, int cantidad);
  * Resultado de porcentaje_fragmentacion().
  */
 typedef struct {
-	double minimo;
 	double porcentaje;
+	double minimo;
 	int cant_arch;
 } frag_result;
 
