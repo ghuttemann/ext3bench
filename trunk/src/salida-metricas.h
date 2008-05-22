@@ -1,9 +1,7 @@
 #ifndef SALIDAMETRICAS_H_
 #define SALIDAMETRICAS_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "primitivas.h"
 
 #define MAXFLDS 8 /* número máximo de campos posible */
 
@@ -21,7 +19,6 @@ typedef struct {
     long long tCD; 	/* Tiempo de creación de Directorios 	*/
     long long tBD; 	/* Tiempo de borrado de Directorios 	*/
     double PF;		/* Porcentaje de Fragmentación			*/
-	
 } result_t;
 
 
@@ -31,37 +28,37 @@ typedef struct {
  * 
  */
 typedef struct {
-	long long pTB;	/* Tamaño de Bloques   {1024, 4096}            */
-	long long pNJ;	/* Nivel de Journaling {journal_data,
+	int pTB;	/* Tamaño de Bloques   {1024, 4096}            */
+	char pNJ[25];	/* Nivel de Journaling {journal_data,
 	                                        journal_data_ordered,
 	                                        journal_data_writeback */
-    long long pSI;	/* Frecuencia de sincronización de los datos
-                       y metadas al disco en segundos. 
+    int pSI;	/* Frecuencia de sincronización de los datos
+                   y metadas al disco en segundos. 
                                  { 5s (default),
                                    8s, 
                                    10s }                            */ 
-    long long pAT; 	/* Actualización de Acces Time {Sí o No}		*/
+    char pAT[3]; 	/* Actualización de Acces Time {Sí o No}		*/
 } param_t;
 
 /* 
  * Operaciones para abrir y cerrar el archivo CSV de resultados 
  */
 FILE *open_csvFile(char *filename);
-void close_csvFile(FILE fd);
+void close_csvFile(FILE *fd);
 
 /*
  * Imprime la cabecera del archivo de salida. 
  * 
  * Se ejecuta solo una vez. 
  */
-void print_header(FILE *csvFile, result_t *r);
+void print_header(FILE *csvFile, param_t *r);
 
 /* Imprime una línea de resultados en el archivo de resultados
  * 
  * Se ejecuta cada vez que se termina una operación, luego de 
  * calcular los valores de las métricas correspondientes. 
  */
-void print_test_result(FILE *csvFile, param_t *p);
+void print_test_result(FILE *csvFile, result_t *p);
 
 
 /* 
@@ -70,6 +67,6 @@ void print_test_result(FILE *csvFile, param_t *p);
  * 
  * dev : dispositivo donde se halla el Sistema de archivos a probar. 
  */
-param_t verificar_filesystem(char *dev);
+param_t *verificar_filesystem(char *dev);
 
 #endif /*SALIDAMETRICAS_H_*/
