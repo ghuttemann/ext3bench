@@ -228,7 +228,7 @@ void borrar_archivo(char *dir, int narch, char *patron) {
 	 * 
 	 */
 	for (i=0; i < narch; i++) {
-		sprintf(path_buff, "%s-%d", patron, i);
+		sprintf(path_buff, "%s%s-%d", dir, patron, i);
 		
 		printf("Creando el archivo '%s'...\n", path_buff);
 		tmp = remove(path_buff);
