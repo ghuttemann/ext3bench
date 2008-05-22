@@ -1,13 +1,12 @@
 /* 
  * Pruebas básicas de las operaciones para crear y borrar directorios
  */
-
-#include "mixdirs.h" 
 #include <stdio.h>
 #include <time.h>
-#include "primitivas.h" 
+#include "primitivas.h"
+#include "operaciones.h"
 
-int main(int argc, char **argv) {
+int main_(int argc, char **argv) {
 	
 	char *dirname = "testDir";
 	char *path = "/tmp/ext3bench/";
