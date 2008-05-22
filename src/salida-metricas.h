@@ -11,14 +11,14 @@
  * operaciones.h
  */
 typedef struct {
-	char testId[20];	/* Identificador de la prueba 			*/
+	char testId[20];/* Identificador de la prueba 			*/
 	double BEs;		/* Bytes Escritos por Segundo 			*/
 	double BLs;		/* Bytes Leídos por Segundo 			*/
 	double LE;		/* Latencia de Escritura 				*/ 
 	double LL; 		/* Latencia de Lectura	 				*/
 	double tCD; 	/* Tiempo de creación de Directorios 	*/
 	double tBD; 	/* Tiempo de borrado de Directorios 	*/
-    double PF;		/* Porcentaje de Fragmentación			*/
+    frag_result PF;	/* Porcentaje de Fragmentación			*/
 } result_t;
 
 
