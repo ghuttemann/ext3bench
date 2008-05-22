@@ -19,7 +19,7 @@
  * "patron_archivos" es el patron de nombres de archivos
  * "subdir" directorio a crear
  */
-void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir);
+void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir, FILE * log);
 
 
 
@@ -32,7 +32,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
  * "veces_aleatorio" cantidad de veces que se escribe
  * "subdir" directorio a crear
  */
-void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_aleatorio, char * subdir);
+void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_aleatorio, char * subdir, FILE * log);
 
 
 
