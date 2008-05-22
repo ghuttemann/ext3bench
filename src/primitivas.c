@@ -48,13 +48,13 @@ void verificar_longitud_path(char *path) {
 	}
 }
 
-char verificar_barra_final(char *path) {
+char *verificar_barra_final(char *path) {
 	int len = strlen(path);
 	
 	if (path[len - 1] == '/')
-		return '\0';
+		return "";
 	
-	return '/';
+	return "/";
 }
 
 void cargar_buffer(char *buffer, int tam) {
@@ -318,4 +318,42 @@ void borrar_directorio(char *path, char *dirname, int cantidad) {
 			exit(1);
 		}
 	}
+}
+
+double porcentaje_fragmentacion(char *path) {
+	char buffer[PATH_BUFF_SIZE + 1];
+	DIR *directorio;
+	struct dirent *entrada;
+	struct stat info;
+	int cant_archivos = 0;
+	double porcentaje = 0;
+	
+	if ((directorio = opendir(path)) == NULL) {
+		fprintf(stderr, "Error al abrir directorio '%s'\n", path);
+		perror(NULL);
+		exit(1);
+	}
+	
+	while (entrada = readdir(directorio), entrada != NULL) {
+		sprintf(buffer, "%s%s", path, entrada->d_name);
+		stat(buffer, &info);
+		
+		if (S_ISREG(info.st_mode)) {
+			// Tamaño en bloques
+			double div = (double) (info.st_blocks * info.st_blksize);
+			
+			++cant_archivos;
+			porcentaje += info.st_size / div;
+		}
+	}
+	
+	if (errno == EBADF) {
+		fprintf(stderr, "Error al leer directorio '%s'\n", path);
+		perror(NULL);
+		exit(1);
+	}
+	
+	closedir(directorio);
+	
+	return porcentaje / cant_archivos;
 }
