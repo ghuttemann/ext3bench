@@ -286,9 +286,7 @@ void crear_directorio(char *path, char *dirname, int cantidad) {
 	
 	for (i = 0; i < cantidad; ++i) {
 		sprintf(path_buff, "%s%s-%d", path, dirname, i);
-					
-		printf("Creando el directorio '%s'...\n", path_buff);			
-					
+									
 		int result = mkdir(path_buff, 0777);
 		// Verificamos error
 		if (result == -1) {
@@ -304,8 +302,7 @@ void crear_un_directorio(char *path, char *dirname) {
 	char path_buff[PATH_BUFF_SIZE + 1];
 	
 	sprintf(path_buff, "%s%s", path, dirname);
-	printf("Creando el directorio '%s'...\n", path_buff);			
-
+	
 	int result = mkdir(path_buff, 0777);
 	// Verificamos error
 	if (result == -1) {
@@ -323,9 +320,7 @@ void borrar_directorio(char *path, char *dirname, int cantidad) {
 		
 	for (i = 0; i < cantidad; ++i) {
 		sprintf(path_buff, "%s%s-%d", path, dirname, i);
-					
-		printf("Borrando el directorio '%s'...\n", path_buff);			
-					
+								
 		int result = rmdir(path_buff);
 		// Verificamos error
 		if (result == -1) {
