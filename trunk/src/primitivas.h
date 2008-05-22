@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <dirent.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -63,7 +64,7 @@ void verificar_longitud_path(char *path);
  * Si no existe, retorna un caracter barra, en
  * caso contrario retorna el caracter vacío.
  */
-char verificar_barra_final(char *path);
+char *verificar_barra_final(char *path);
 
 /*
  * Función que carga bytes en un buffer.
@@ -161,5 +162,10 @@ void crear_directorio(char *path, char *dirname, int cantidad);
  */
 void borrar_directorio(char *path, char *dirname, int cantidad);
 
+/*
+ * Calcula la fragmentación interna de los archivos
+ * de un directorio. Opera recursivamente.
+ */
+double porcentaje_fragmentacion(char *path);
 
 #endif /*PRIMITIVAS_H_*/
