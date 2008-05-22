@@ -2,7 +2,7 @@
  * Pruebas básicas de las operaciones para crear y borrar directorios
  */
 
-#include "primitivas-arch.h" 
+#include "primitivas.h" 
 
 int main(int argc, char **argv) {
 	
