@@ -120,11 +120,9 @@ void leer_archivo(FILE *arch, char *nombre, int cbytes, int tam_bloque);
  * La entrada/salida realizada se hace en bloques de tamaño igual a 
  * "tam_bloque" (se asume que este valor es lo suficientemente menor 
  * al tamaño del archivo como para que el acceso aleatorio se justifique;
- * además, será como máximo IO_BUFF_SIZE). 
+ * además, será como máximo IO_BUFF_SIZE), y esta se realiza "cant" veces. 
  * Se asume que el archivo está abierto, para lectura o escritura, 
  * según sea el caso.
- * El penúltimo parámetro es un puntero a la función que realizará la 
- * operación de entrada o salida.
  * El último parámetro indica si debe realizarse una escritura, para
  * lo cual el valor debe ser distinto de cero. En caso contrario se
  * realizará una lectura.
