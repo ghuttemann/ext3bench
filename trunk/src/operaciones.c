@@ -251,15 +251,59 @@ void leer_2000_aleatorio(char *path, char *patron) {
  */
 
 void mDirs(FILE fd, char *path, int cant) {
+
+	result_t r = {0};      	/* estructura de resultados 		*/
+	char testId[20];		/* identificador de la prueba 		*/
+	long long t1;
+	long long t2; 
+	long long t3; 	/* variables de medición de tiempo 	*/
+
+	// Primero realizamos la prueba de Lectura Secuencial
+	sprintf(testId,"cNDir");
+	MEDICION ( crear_N_directorios(path,cant) );
+
+	r.testId = testId;
+	r.tCD = ( t3 / ( (double) cant) );
+	print_test_result(output,r);
+
+	sprintf(testId,"bNDir");
+	MEDICION ( borrar_N_directorios(path,cant) );
+
+	r.testId = testId;
+	r.tBD = ( t3 / ( (double) t3) );
+	print_test_result(output,r);
+
 	
 }
 
 void crear_N_directorios(char *path, int N) {
-	
+	int var = 0;
+	char path_buff[PATH_BUFF_SIZE + 1];
+    int cant = N / 4;
+    
+	// Se crean primero 4 subdirectorios para distribuir los directorios
+	// porque cada directorio de ext3 puede tener hasta 2
+	crear_directorio(path,"testDir",4);
+
+	for (var = 0; var < 4; ++var) {	
+		// En cada subdirectorio, se crean 25000 directorios. 
+		sprintf(path_buff, "%s%s-%d/", path, "testDir", var);		
+		crear_directorio(path_buff,"test",cant);
+	}
 }
 
 void borrar_N_directorios(char *path, int N) {
-	
+	int var = 0;
+	char path_buff[PATH_BUFF_SIZE + 1];
+	int cant = N/4;
+
+	for (var = 0; var < 4; ++var) {	
+		// En cada subdirectorio, se crean 25000 directorios. 
+		sprintf(path_buff, "%s%s-%d/", path, "testDir", var);		
+		borrar_directorio(path_buff,"test",cant);
+	}
+
+	borrar_directorio(path,"testDir",4);	
 }
 
 
