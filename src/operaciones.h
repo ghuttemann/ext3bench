@@ -7,7 +7,7 @@
    t1 = tiempo_milis(), \
    f,                   \
    t2 = tiempo_milis(), \
-   t3 = t2 -t1          \
+   t3 = t2 -t1;          \
 }
 
 //OPERACIONES
