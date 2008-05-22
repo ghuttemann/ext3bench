@@ -1,4 +1,4 @@
-#include "primitivas-arch.h"
+#include "primitivas.h"
 
 void verificar_longitud_path(char *path) {
 	int maxlen = strlen(path);

@@ -7,7 +7,7 @@
  Description : Hello World in C, Ansi-style                   b6z4q9r3
  ============================================================================
  */
-#include "primitivas-arch.h"
+#include "primitivas.h"
 
 /* 
  * ToDo
