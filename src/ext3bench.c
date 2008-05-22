@@ -7,10 +7,7 @@
  Description : Hello World in C, Ansi-style                   b6z4q9r3
  ============================================================================
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "primitivas-arch.h"
 
 /* 
  * ToDo
@@ -23,9 +20,4 @@
  * Luego se deben ejecutar las operaciones y sacar las estadísticas, algunas 
  * de ellas en la implementación de las operaciones: 
  * 
- */ 
-
-int main(void) {
-	puts("Aquí se realizarán las pruebas!!!"); /* prints !!!Hello World!!! */
-	return EXIT_SUCCESS;
-}
+ */
