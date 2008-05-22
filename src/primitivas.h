@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -31,6 +32,21 @@ char OUTPUT_BUFFER[IO_BUFF_SIZE];
  * que se realicen.
  */
 char INPUT_BUFFER[IO_BUFF_SIZE];
+
+/*
+ * Función que retorna el tiempo transcurrido
+ * desde Epoch (ver time(2)).
+ * La unidad de medida es "segundos" con
+ * decimales hasta la precisión de microsegundos.
+ */
+double tiempo_seg();
+
+/*
+ * Función que retorna el tiempo transcurrido
+ * desde Epoch (ver time(2)).
+ * La unidad de medida es "milisegundos".
+ */
+long long tiempo_milis();
 
 /* 
  * Función que verificamos que el path del directorio no sea 
