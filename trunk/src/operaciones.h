@@ -2,7 +2,7 @@
 
 #ifndef OPERACIONES_H_
 #define OPERACIONES_H_
-
+#include <stdio.h>
 #define MEDICION(f) {   \
    t1 = tiempo_milis(), \
    f,                   \
@@ -38,8 +38,8 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 
 /**
  * MLECT2
- */
-/* Wrapper de todas las operaciones de Lectura de este grupo
+ * 
+ * Wrapper de todas las operaciones de Lectura de este grupo
  * 
  */
 void mLect2(FILE output,char *path, char *patron, int cant, int cbytes);
