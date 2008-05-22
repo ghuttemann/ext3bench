@@ -13,6 +13,11 @@
 #include <errno.h>
 #include <time.h>
 
+/*
+ * Macro para calcular el mínimo
+ * de dos valores.
+ */
+#define min(a, b) (a < b ? a : b)
 
 // Tamaño del buffer de E/S en bytes
 #define IO_BUFF_SIZE 512
