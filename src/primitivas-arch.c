@@ -1,5 +1,43 @@
 #include "primitivas.h"
 
+struct timeval obtener_tiempo() {
+	struct timeval tv;
+
+	if (gettimeofday(&tv, NULL) == -1) {
+		fprintf(stderr, "medir_tiempo(): Error al obtener el tiempo\n");
+		perror(NULL);
+		exit(1);
+	}
+	
+	return tv;
+}
+
+double tiempo_seg() {
+	double seg, mseg;
+	struct timeval tv = obtener_tiempo();
+	
+	seg = tv.tv_sec;
+	mseg += (tv.tv_usec / 1000000.0);
+	
+	return (seg + mseg);
+}
+
+long long tiempo_milis() {
+	long long seg, mseg;
+	struct timeval tv = obtener_tiempo();
+	
+	// Guardamos los tiempos en long long int
+	seg  = tv.tv_sec;
+	mseg = tv.tv_usec;
+	
+	// Convertimos los tiempos en milisegundos
+	seg  = seg * 1000;
+	mseg = mseg / 1000;
+	
+	// Retornamos el resultado
+	return (seg + mseg);
+}
+
 void verificar_longitud_path(char *path) {
 	int maxlen = strlen(path);
 	
