@@ -139,7 +139,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 /**
  * MLECT2
  */
-void mLect2(FILE output,char *path, char *patron, int cant, int cbytes) {
+void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 
 	result_t r = {0};      	/* estructura de resultados 		*/
 	long long t1;
@@ -152,14 +152,14 @@ void mLect2(FILE output,char *path, char *patron, int cant, int cbytes) {
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL =  t3 / ( (double) cant);
-	print_test_result(output,r);
+	print_test_result(output,&r);
 
 	sprintf(r.testId,"lNAleat");
 	MEDICION ( leer_N_aleatorio(path,patron,cant,cbytes) );
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL = t3 / ( (double) cant);
-	print_test_result(output,r);
+	print_test_result(output,&r);
 
 }
 
@@ -247,7 +247,7 @@ void leer_2000_aleatorio(char *path, char *patron) {
  * MDIR
  */
 
-void mDirs(FILE output, char *path, int cant) {
+void mDirs(FILE * output, char *path, int cant) {
 
 	result_t r = {0};      	/* estructura de resultados 		*/
 	long long t1;
@@ -259,13 +259,13 @@ void mDirs(FILE output, char *path, int cant) {
 	MEDICION ( crear_N_directorios(path,cant) );
 
 	r.tCD = ( t3 / ( (double) cant) );
-	print_test_result(output,r);
+	print_test_result(output,&r);
 
 	sprintf(r.testId,"bNDir");
 	MEDICION ( borrar_N_directorios(path,cant) );
 
 	r.tBD = ( t3 / ( (double) t3) );
-	print_test_result(output,r);
+	print_test_result(output,&r);
 
 	
 }
