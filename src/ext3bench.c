@@ -5,15 +5,13 @@
    - Cristhian Daniel Parra
    - Fernando Mancía Zelaye
    - Germán Huttemann Arza
-	
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style                   b6z4q9r3
+   - Marcelo Rodas Britez
  ============================================================================
  */
 
 #include "primitivas.h"
 #include "operaciones.h"
+#include "salida-metricas.h"
 
 
 //directorio donde se crean los archivos
@@ -28,35 +26,76 @@ char mFragDir[PATH_BUFF_SIZE + 1];
 
 int main(int argc, char **argv){
 	if(argc != 2){
-		printf("Se debe pasar el directorio de trabajo\n");
-		return 1;
+		fprintf(stderr, "Se debe pasar el directorio de trabajo\n");
+		exit(1);
 	}
-
-	sprintf(PATH, "%s%s", argv[1], verificar_barra_final(argv[1]));	
+	
+	// Configuramos el directorio de trabajo.
+	sprintf(PATH, "%s%s", argv[1], verificar_barra_final(argv[1]));
+	verificar_longitud_path(PATH);
 	printf("En este PATH trabajaremos %s\n", PATH);
+	
+	// Cargamos el buffer de salida.
+	cargar_buffer(OUTPUT_BUFFER, IO_BUFF_SIZE);
 
-	//creacion de los directorios de trabajo
+	// Creacion de los directorios de trabajo.
 	crear_un_directorio(PATH, "mLect");
 	crear_un_directorio(PATH, "mEscr");
 	crear_un_directorio(PATH, "mLect2");
 	crear_un_directorio(PATH, "mDirs");
 	crear_un_directorio(PATH, "mFrag");
 
-	sprintf(mLectDir, "%s%s", PATH, "mLect");
-	sprintf(mEscrDir, "%s%s", PATH, "mEscr");
-	sprintf(mLect2Dir, "%s%s", PATH, "mLect2");
-	sprintf(mDirsDir, "%s%s", PATH, "mDirs");
-	sprintf(mFragDir, "%s%s", PATH, "mFrag");
-
-
-
+	sprintf(mLectDir,  "%s%s", PATH, "mLect/");
+	sprintf(mEscrDir,  "%s%s", PATH, "mEscr/");
+	sprintf(mLect2Dir, "%s%s", PATH, "mLect2/");
+	sprintf(mDirsDir,  "%s%s", PATH, "mDirs/");
+	sprintf(mFragDir,  "%s%s", PATH, "mFrag/");
+	
+	// Abrimos el archivo de salida.
+	FILE *salida = open_csvFile("./salida.csv");
 
 	//Ejecucion de las operaciones
-	//MLECT
+	//MLECT ##################################################################
 	mLect(1000, IO_BUFF_SIZE * 1000, "patronlect", mLectDir);
+	//########################################################################
 
-	//MESCR
+	
+	//MESCR ##################################################################
 	mEscr(2000, 2000000, "patronescr", 5, mEscrDir);
-
-	return 0; 
+	//########################################################################
+	
+	
+	//MFRAG ##################################################################
+	frag_result result_frag[5];
+	test_fragmentacion(mFragDir);
+	
+	// Calculamos la fragmentacion de cada directorio.
+	porcentaje_fragmentacion(mLectDir,  &result_frag[1]);
+	porcentaje_fragmentacion(mLect2Dir, &result_frag[2]);
+	porcentaje_fragmentacion(mEscrDir,  &result_frag[3]);
+	porcentaje_fragmentacion(mFragDir,  &result_frag[4]);
+	
+	result_frag[0].porcentaje = (result_frag[1].porcentaje +
+								 result_frag[2].porcentaje +
+								 result_frag[3].porcentaje +
+								 result_frag[4].porcentaje) / 4;
+	
+	result_frag[0].minimo = min(result_frag[1].minimo, min(result_frag[2].minimo,
+							min(result_frag[3].minimo, result_frag[4].minimo)));
+	
+	result_frag[0].cant_arch = result_frag[1].cant_arch +
+							   result_frag[2].cant_arch +
+							   result_frag[3].cant_arch +
+							   result_frag[4].cant_arch;
+	
+	result_t r = {"mFrag", 0, 0, 0, 0, 0, 0, result_frag[0]};
+	
+	print_test_result(salida, &r);
+	//########################################################################
+	
+	// Cerramos el archivo de salida.
+	close_csvFile(salida);
+	
+	// Bye bye...
+	return EXIT_SUCCESS;
 }
