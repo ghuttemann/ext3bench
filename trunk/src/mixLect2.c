@@ -1,4 +1,5 @@
 #include "mixLect2.h"
+#include <math.h>
 
 /*
  *  Leer N archivos de manera secuencial
@@ -33,7 +34,7 @@ void leer_N_secuencial(char *path, char *patron, int cant, int cbytes) {
  *  path  : full path del directorio donde se encuentra el archivo
  *  patron: patron de nombre de los archivos.
  *  cant  : cantidad de archivos a leer 
- *  cbytes: cantidad bytes del archivos  
+ *  cbytes: cantidad bytes del archivos (debe ser múliplo de IO_BUFF_SIZE)  
  */
 void leer_N_aleatorio(char *path, char *patron, int cant, int cbytes) {
 	int i=0;
@@ -49,7 +50,10 @@ void leer_N_aleatorio(char *path, char *patron, int cant, int cbytes) {
 		
 		fd = abrir_archivo(path_buff,"r");
 	    
-		io_aleatorio(fd,path_buff,cbytes,IO_BUFF_SIZE,0);
+		// siempre se trunca, por lo que nunca se lee más de cbytes
+		int cantidad = cbytes / IO_BUFF_SIZE;
+		
+		io_aleatorio(fd,path_buff,cantidad,IO_BUFF_SIZE,0);
 	    
 	    fclose(fd);
 	}
