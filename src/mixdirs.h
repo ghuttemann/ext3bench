@@ -6,6 +6,12 @@
  * 
  */
 
+// Crear N directorios en un path
+void crear_N_directorios(char *path, int N);
+
+// Borrar N directorios dentro de un Path
+void borrar_N_directorios(char *path, int N);
+
 
 // c100000D: Crear 100000 directorios en un directorio.
 void crear_100mil_directorios(char *path);

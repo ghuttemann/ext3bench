@@ -1,6 +1,15 @@
 #include "mixdirs.h"
 #include "primitivas.h"
 
+void crear_N_directorios(char *path, int N) {
+	
+}
+
+void borrar_N_directorios(char *path, int N) {
+	
+}
+
+
 // c10000D: Crear 100000 directorios bajo un directorio.
 void crear_100mil_directorios(char *path) {
 
