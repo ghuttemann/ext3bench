@@ -42,7 +42,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
  * Wrapper de todas las operaciones de Lectura de este grupo
  * 
  */
-void mLect2(FILE output,char *path, char *patron, int cant, int cbytes);
+void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes);
 
 /*  Leer N archivos de manera secuencial
  * 
@@ -82,7 +82,7 @@ void leer_2000_aleatorio(char *path, char *patron);
 /**
  * MDIR
  */
-void mDirs(FILE fd, char *path, int cant);
+void mDirs(FILE * fd, char *path, int cant);
 
 void crear_N_directorios(char *path, int N);
 
