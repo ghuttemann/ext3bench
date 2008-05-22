@@ -33,6 +33,14 @@ char OUTPUT_BUFFER[IO_BUFF_SIZE];
 char INPUT_BUFFER[IO_BUFF_SIZE];
 
 /*
+ * Se encarga de verificar la existencia de
+ * una barra final en el path de un directorio,
+ * Si no existe, retorna un caracter barra, en
+ * caso contrario retorna el caracter vacío.
+ */
+char verificar_barra_final(char *path);
+
+/*
  * Función que carga bytes en un buffer.
  */
 void cargar_buffer(char *buffer, int tam);
