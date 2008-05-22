@@ -11,13 +11,13 @@
  * operaciones.h
  */
 typedef struct {
-	char *testId;	/* Identificador de la prueba 			*/
-	long long BEs;	/* Bytes Escritos por Segundo 			*/
-	long long BLs;	/* Bytes Leídos por Segundo 			*/
-    long long LE;	/* Latencia de Escritura 				*/ 
-    long long LL; 	/* Latencia de Lectura	 				*/
-    long long tCD; 	/* Tiempo de creación de Directorios 	*/
-    long long tBD; 	/* Tiempo de borrado de Directorios 	*/
+	char testId[20];	/* Identificador de la prueba 			*/
+	double BEs;		/* Bytes Escritos por Segundo 			*/
+	double BLs;		/* Bytes Leídos por Segundo 			*/
+	double LE;		/* Latencia de Escritura 				*/ 
+	double LL; 		/* Latencia de Lectura	 				*/
+	double tCD; 	/* Tiempo de creación de Directorios 	*/
+	double tBD; 	/* Tiempo de borrado de Directorios 	*/
     double PF;		/* Porcentaje de Fragmentación			*/
 } result_t;
 
