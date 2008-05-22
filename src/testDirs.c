@@ -4,7 +4,7 @@
 
 #include "primitivas-arch.h" 
 
-int main(char *argv) {
+int main(int argc, char **argv) {
 	
 	char *dirname = "testDir";
 	char *path = "/tmp/";
