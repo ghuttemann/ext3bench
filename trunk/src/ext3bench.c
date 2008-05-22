@@ -1,7 +1,11 @@
 /*
  ============================================================================
  Name        : ext3bench.c
- Author      : Cristhian Daniel Parra
+ Autores 
+   - Cristhian Daniel Parra
+   - Fernando Mancía Zelaye
+   - Germán Huttemann Arza
+	
  Version     :
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style                   b6z4q9r3
@@ -44,8 +48,15 @@ int main(int argc, char **argv){
 	sprintf(mDirsDir, "%s%s", PATH, "mDirs");
 	sprintf(mFragDir, "%s%s", PATH, "mFrag");
 
-	//ejecucion de las operaciones
+
+
+
+	//Ejecucion de las operaciones
+	//MLECT
 	mLect(1000, IO_BUFF_SIZE * 1000, "patronlect", mLectDir);
+
+	//MESCR
+	mEscr(2000, 2000000, "patronescr", 5, mEscrDir);
 
 	return 0; 
 }
