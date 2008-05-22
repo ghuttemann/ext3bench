@@ -142,26 +142,23 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 void mLect2(FILE output,char *path, char *patron, int cant, int cbytes) {
 
 	result_t r = {0};      	/* estructura de resultados 		*/
-	char testId[20];		/* identificador de la prueba 		*/
 	long long t1;
 	long long t2; 
 	long long t3; 	/* variables de medición de tiempo 	*/
 
 	// Primero realizamos la prueba de Lectura Secuencial
-	sprintf(testId,"lNSeq");
+	sprintf(r.testId,"lNSeq");
 	MEDICION ( leer_N_secuencial(path,patron,cant,cbytes) );
 
-	r.testId = testId;
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
-	r.LL = ( t3 / ( (double) cant);
+	r.LL =  t3 / ( (double) cant);
 	print_test_result(output,r);
 
-	sprintf(testId,"lNAleat");
+	sprintf(r.testId,"lNAleat");
 	MEDICION ( leer_N_aleatorio(path,patron,cant,cbytes) );
 
-	r.testId = testId;
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
-	r.LL = ( t3 / ( (double) cant);
+	r.LL = t3 / ( (double) cant);
 	print_test_result(output,r);
 
 }
@@ -250,26 +247,23 @@ void leer_2000_aleatorio(char *path, char *patron) {
  * MDIR
  */
 
-void mDirs(FILE fd, char *path, int cant) {
+void mDirs(FILE output, char *path, int cant) {
 
 	result_t r = {0};      	/* estructura de resultados 		*/
-	char testId[20];		/* identificador de la prueba 		*/
 	long long t1;
 	long long t2; 
 	long long t3; 	/* variables de medición de tiempo 	*/
 
 	// Primero realizamos la prueba de Lectura Secuencial
-	sprintf(testId,"cNDir");
+	sprintf(r.testId,"cNDir");
 	MEDICION ( crear_N_directorios(path,cant) );
 
-	r.testId = testId;
 	r.tCD = ( t3 / ( (double) cant) );
 	print_test_result(output,r);
 
-	sprintf(testId,"bNDir");
+	sprintf(r.testId,"bNDir");
 	MEDICION ( borrar_N_directorios(path,cant) );
 
-	r.testId = testId;
 	r.tBD = ( t3 / ( (double) t3) );
 	print_test_result(output,r);
 
