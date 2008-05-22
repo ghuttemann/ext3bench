@@ -174,9 +174,18 @@ void crear_un_directorio(char *path, char *dirname);
 void borrar_directorio(char *path, char *dirname, int cantidad);
 
 /*
+ * Resultado de porcentaje_fragmentacion().
+ */
+typedef struct {
+	double minimo;
+	double porcentaje;
+	int cant_arch;
+} frag_result;
+
+/*
  * Calcula la fragmentación interna de los archivos
  * de un directorio. Opera recursivamente.
  */
-double porcentaje_fragmentacion(char *path);
+void porcentaje_fragmentacion(char *path, frag_result *resultado);
 
 #endif /*PRIMITIVAS_H_*/

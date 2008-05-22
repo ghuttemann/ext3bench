@@ -338,13 +338,15 @@ void borrar_directorio(char *path, char *dirname, int cantidad) {
 	}
 }
 
-double porcentaje_fragmentacion(char *path) {
+void porcentaje_fragmentacion(char *path, frag_result *resultado) {
 	char buffer[PATH_BUFF_SIZE + 1];
 	DIR *directorio;
 	struct dirent *entrada;
 	struct stat info;
 	int cant_archivos = 0;
 	double porcentaje = 0;
+	double division;
+	double minimo = 2;
 	
 	if ((directorio = opendir(path)) == NULL) {
 		fprintf(stderr, "Error al abrir directorio '%s'\n", path);
@@ -354,14 +356,21 @@ double porcentaje_fragmentacion(char *path) {
 	
 	while (entrada = readdir(directorio), entrada != NULL) {
 		sprintf(buffer, "%s%s", path, entrada->d_name);
-		stat(buffer, &info);
+		
+		if (stat(buffer, &info) == -1) {
+			fprintf(stderr, "Error al obtener informacion de '%s'\n", buffer);
+			perror(NULL);
+			exit(1);
+		}
 		
 		if (S_ISREG(info.st_mode)) {
-			// Tamaño en bloques
-			double div = (double) (info.st_blocks * info.st_blksize);
-			
 			++cant_archivos;
-			porcentaje += info.st_size / div;
+			division = info.st_size / ((double) (info.st_blocks * 512));
+			
+			if (division < minimo)
+				minimo = division;
+			
+			porcentaje += division;
 		}
 	}
 	
@@ -373,5 +382,7 @@ double porcentaje_fragmentacion(char *path) {
 	
 	closedir(directorio);
 	
-	return porcentaje / cant_archivos;
+	resultado->porcentaje = (porcentaje / cant_archivos) * 100;
+	resultado->minimo     = minimo * 100;
+	resultado->cant_arch  = cant_archivos;
 }
