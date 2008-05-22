@@ -1,5 +1,3 @@
-// ToDo: implementación de operaciones. 
-
 /*
  * 
  * Para Trabajar por separado, el esquema podría ser así: 
