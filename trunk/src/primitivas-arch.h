@@ -32,9 +32,18 @@ char OUTPUT_BUFFER[IO_BUFF_SIZE];
  */
 char INPUT_BUFFER[IO_BUFF_SIZE];
 
+/* 
+ * Función que verificamos que el path del directorio no sea 
+ * muy largo.
+ * Se asume que entre el patron y el numero agregado para la
+ * creación archivos y directorios, no se superan los 50 
+ * caracteres.
+ */
+void verificar_longitud_path(char *path);
+
 /*
- * Se encarga de verificar la existencia de
- * una barra final en el path de un directorio,
+ * Función que se encarga de verificar la existencia
+ * de una barra final en el path de un directorio,
  * Si no existe, retorna un caracter barra, en
  * caso contrario retorna el caracter vacío.
  */
