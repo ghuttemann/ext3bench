@@ -1,5 +1,5 @@
 #include "mixdirs.h"
-#include "primitivas-arch.h"
+#include "primitivas.h"
 
 // c10000D: Crear 100000 directorios bajo un directorio.
 void crear_100mil_directorios(char *path) {
