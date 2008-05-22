@@ -82,7 +82,11 @@ void leer_2000_aleatorio(char *path, char *patron);
 /**
  * MDIR
  */
-void mDirs(FILE fd, char *path, char *patron, int cant, int cbytes);
+void mDirs(FILE fd, char *path, int cant);
+
+void crear_N_directorios(char *path, int N);
+
+void borrar_N_directorios(char *path, int N);
 
 // c100000D: Crear 100000 directorios en un directorio.
 void crear_100mil_directorios(char *path);
