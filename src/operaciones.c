@@ -35,10 +35,12 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 	
 	//OPERACION - crear "veces" archivos
 	printf("\tCreando %d arch de %d bytes. c1000A...", cant_archivos, tamanho);
+	fflush(stdout);
 	t1 = tiempo_milis();
 	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
 	t2 = tiempo_milis();
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c1000A");
@@ -49,6 +51,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 
 	//OPERACION  - leer los arch creados	
 	printf("\tLectura de %d arch. de %d bytes. l1000A...", cant_archivos, tamanho);
+	fflush(stdout);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
@@ -57,7 +60,8 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 		fclose(tmparch);
 	}
 	t2 = tiempo_milis();
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "l1000A");
@@ -67,6 +71,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 
 	//OPERACION - RE-leer  los arch creados	
 	printf("\tRe-lectura de %d arch. de %d bytes. rl1000A...", cant_archivos, tamanho);
+	fflush(stdout);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
@@ -75,7 +80,8 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 		fclose(tmparch);
 	}
 	t2 = tiempo_milis();
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	result_t res3 = {0};
 	sprintf(res3.testId, "%s", "rl1000A");
@@ -101,10 +107,12 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 
 	//OPERACION - crear "cant_archivos" archivos
 	printf("\tCreacion de %d arch. de %d bytes. rl1000A...", cant_archivos, tamanho);
+	fflush(stdout);
 	t1 = tiempo_milis();
 	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
 	t2 = tiempo_milis();
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c2000A2m");
@@ -114,6 +122,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 
 	//OPERACION - RE-escritura aleatoria de los arch creados	
 	printf("\tEscritura aleatoria de %d arch. de %d bytes. rl1000A...", cant_archivos, tamanho);
+	fflush(stdout);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
@@ -122,7 +131,8 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 		fclose(tmparch);
 	}
 	t2 = tiempo_milis();
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "re2000A2m");
@@ -144,8 +154,10 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 	// Primero realizamos la prueba de Lectura Secuencial
 	sprintf(r.testId,"lNSeq");
 	printf("\tLectura secuencial de %d arch de %d bytes...", cant, cbytes);
+	fflush(stdout);
 	MEDICION ( leer_N_secuencial(path,patron,cant,cbytes) );
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL =  (t3 / 1000.0) / ( (double) cant);
@@ -153,8 +165,10 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 
 	sprintf(r.testId,"lNAleat");
 	printf("\tLectura aleatoria de %d arch de %d bytes...", cant, cbytes);
+	fflush(stdout);
 	MEDICION ( leer_N_aleatorio(path,patron,cant,cbytes) );
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL = (t3 / 1000.0)/ ( (double) cant);
@@ -202,7 +216,7 @@ void leer_N_aleatorio(char *path, char *patron, int cant, int cbytes) {
 
 	for (i = 0; i < cant; ++i) {
 		sprintf(path_buff, "%s%s-%d", path, patron, i);
-		fd = abrir_archivo(path_buff,"r");
+		fd = abrir_archivo(path_buff,"r+");
 		
 		// siempre se trunca, por lo que nunca se lee más de cbytes
 		int cantidad = cbytes / IO_BUFF_SIZE;
@@ -241,16 +255,20 @@ void mDirs(FILE * output, char *path, int cant) {
 	sprintf(r.testId,"cNDir");
 	
 	printf("\tCreando %d directorios...", cant);
+	fflush(stdout);
 	MEDICION ( crear_N_directorios(path,cant) );
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	r.tCD = ( (t3 / 1000.0) / ( (double) cant) );
 	print_test_result(output,&r);
 
 	sprintf(r.testId,"bNDir");
 	printf("\tBorrando %d directorios...", cant);
+	fflush(stdout);
 	MEDICION ( borrar_N_directorios(path,cant) );
-	printf("Fin\n");
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	r.tBD = ( (t3 / 1000.0) / ( (double) t3) );
 	print_test_result(output,&r);
@@ -325,13 +343,20 @@ void test_fragmentacion(char *path) {
 	char buffer[PATH_BUFF_SIZE + 1];
 	FILE *arch;
 	int i, j, CBYTES=600, tam;
+	long long t1, t2, t3;
 
 	// Crear archivos vacíos.
 	printf("\tCreando 1000 archivos vacios...");
+	fflush(stdout);
+	t1 = tiempo_milis();
 	crear_archivo(path, 1000, 0, 0, PATRON);
-	printf("Fin\n");
+	t2 = tiempo_milis();
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	printf("\tEscribiendo 600 bytes en cada archivo (repetir 1000 veces)...");
+	fflush(stdout);
+	t1 = tiempo_milis();
 	// Escribir 600 bytes en cada archivo (repetir 1000 veces).
 	for (j=0; j < 1000; j++) {
 		for (i=0; i < 1000; i++) {
@@ -341,9 +366,13 @@ void test_fragmentacion(char *path) {
 			fclose(arch);
 		}
 	}
-	printf("Fin\n");
+	t2 = tiempo_milis();
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	printf("\tTruncando cada archivo a la mitad de su longitud...");
+	fflush(stdout);
+	t1 = tiempo_milis();
 	// Truncar cada archivo a la mitad de su longitud
 	for (i=0; i < 1000; i++) {
 		sprintf(buffer, "%s%s-%d", path, PATRON, i);
@@ -360,9 +389,13 @@ void test_fragmentacion(char *path) {
 
 		fclose(arch);
 	}
-	printf("Fin\n");
+	t2 = tiempo_milis();
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 
 	printf("\tAgregando 600 bytes en cada archivo (repetir 1000 veces)...");
+	fflush(stdout);
+	t1 = tiempo_milis();
 	// Agregar 600 bytes en cada archivo (repetir 1000 veces).
 	for (j=0; j < 1000; j++) {
 		for (i=0; i < 1000; i++) {
@@ -372,5 +405,7 @@ void test_fragmentacion(char *path) {
 			fclose(arch);
 		}
 	}
-	printf("Fin\n");
+	t2 = tiempo_milis();
+	printf("%lld ms.\n", t2 - t1);
+	fflush(stdout);
 }
