@@ -354,7 +354,7 @@ void porcentaje_fragmentacion(char *path, frag_result *resultado) {
 		
 		if (S_ISREG(info.st_mode)) {
 			++cant_archivos;
-			division = info.st_size / ((double) (info.st_blocks * 512));
+			division = ceil(info.st_size / 512.0) / info.st_blocks;
 			
 			if (division < minimo)
 				minimo = division;
