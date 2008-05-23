@@ -34,10 +34,12 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 	long long t1,t2;
 	
 	//OPERACION - crear "veces" archivos
+	printf("\n\tIniciando Creacion de %d arch de %d bytes. c1000A..\n", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
 	t2 = tiempo_milis();
-	
+	printf("\tFin de Creacion\n");
+
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c1000A");
 	res1.BEs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
@@ -46,6 +48,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 
 
 	//OPERACION  - leer los arch creados	
+	printf("\n\tIniciando lectura de %d arch. de %d bytes. l1000A...\n", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 
@@ -55,6 +58,8 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 		fclose(tmparch);
 	}
 	t2 = tiempo_milis();
+	printf("\tFin de lectura\n");
+
 
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "l1000A");
@@ -66,6 +71,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 
 
 	//OPERACION - RE-leer  los arch creados	
+	printf("\n\tIniciando re-lectura de %d arch. de %d bytes. rl1000A...\n", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 
@@ -75,6 +81,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 		fclose(tmparch);
 	}
 	t2 = tiempo_milis();
+	printf("\tFin re-lectura.\n");
 
 	result_t res3 = {0};
 	sprintf(res3.testId, "%s", "rl1000A");
@@ -101,10 +108,11 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 	int i = 0;
 
 	//OPERACION - crear "cant_archivos" archivos
+	printf("\n\tIniciando creacion de %d arch. de %d bytes. rl1000A...\n", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
 	t2 = tiempo_milis();
-
+	printf("\tFin creacion.\n");
 
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c2000A2m");
@@ -116,6 +124,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 
 
 	//OPERACION - RE-escritura aleatoria de los arch creados	
+	printf("\n\tIniciando escritura aleatoria de %d arch. de %d bytes. rl1000A...\n", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
 
@@ -126,6 +135,8 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 
 	}
 	t2 = tiempo_milis();
+	printf("\tFin escritura aleatoria.\n");
+
 
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "re2000A2m");
@@ -148,14 +159,20 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 
 	// Primero realizamos la prueba de Lectura Secuencial
 	sprintf(r.testId,"lNSeq");
+	printf("\n\tIniciando lectura secuencial de %d arch de %d bytes.\n", cant, cbytes);
 	MEDICION ( leer_N_secuencial(path,patron,cant,cbytes) );
+	printf("\n\tFin lectura secuencial.\n");
+
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL =  t3 / ( (double) cant);
 	print_test_result(output,&r);
 
 	sprintf(r.testId,"lNAleat");
+	printf("\n\tIniciando lectura aleatoria de %d arch de %d bytes.\n", cant, cbytes);
 	MEDICION ( leer_N_aleatorio(path,patron,cant,cbytes) );
+	printf("\tFin lectura aleatoria.\n", cant, cbytes);
+
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL = t3 / ( (double) cant);
@@ -220,6 +237,7 @@ void leer_N_aleatorio(char *path, char *patron, int cant, int cbytes) {
 		fclose(fd);
 	}
 
+
 }
 
 
@@ -256,13 +274,18 @@ void mDirs(FILE * output, char *path, int cant) {
 
 	// Primero realizamos la prueba de Lectura Secuencial
 	sprintf(r.testId,"cNDir");
+	
+	printf("\n\tCreando %d directorios..\n", cant);
 	MEDICION ( crear_N_directorios(path,cant) );
+	printf("\tFin crear directorio.\n");
 
 	r.tCD = ( t3 / ( (double) cant) );
 	print_test_result(output,&r);
 
 	sprintf(r.testId,"bNDir");
+	printf("\n\tBorrando %d directorios..\n", cant);
 	MEDICION ( borrar_N_directorios(path,cant) );
+	printf("\tFin borrar directorios.\n");
 
 	r.tBD = ( t3 / ( (double) t3) );
 	print_test_result(output,&r);
