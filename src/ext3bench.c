@@ -53,6 +53,7 @@ int main(int argc, char **argv){
 	
 	// Abrimos el archivo de salida.
 	FILE *salida = open_csvFile("./salida.csv");
+	fprintf(salida,"testId,BEs,BLs,LE,LL,tCD,tBD,PF-%,PF-min,PF-cant");
 	
 	t1 = tiempo_milis();
 
