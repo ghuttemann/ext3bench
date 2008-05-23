@@ -15,3 +15,6 @@ Lista de enlaces interesantes en los cuales encontramos alguna u información ú
  * [http://homepage.smc.edu/morgan_david/cs40/analyze-ext2.htm Análisis de ext2]
  * [http://en.wikipedia.org/wiki/Journaling_file_system Journaling File System]
  * [http://www.redhat.com/archives/ext3-users/2007-May/msg00009.html Tips para tunear ext3]
+ * [http://nakedape.cc/wiki/PlatformNotes_2fLinuxNotes#head-cc9fb9851ff9d491b28aba29e978fdd1e0d82271 Notas varias sobre el sistema de archivos Ext3]
+ * [http://www.comentaomuere.com/2007/07/09/recopilacion-de-consejos-para-optimizar-ubuntu/ Más notas varias sobre ext3]
+ * [http://www.ibm.com/developerworks/linux/library/l-fs8.html#4 Algunos datos interesantes]
