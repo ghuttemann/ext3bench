@@ -5,7 +5,7 @@ struct timeval obtener_tiempo() {
 
 	if (gettimeofday(&tv, NULL) == -1) {
 		fprintf(stderr, "medir_tiempo(): Error al obtener el tiempo\n");
-		perror(NULL);
+		perror("sys_msg");
 		exit(1);
 	}
 	
@@ -72,7 +72,7 @@ FILE *abrir_archivo(char *path, char *modo) {
 		fprintf(stderr, 
 				"abrir_archivo(): Error abriendo archivo '%s' en modo '%s'\n", 
 				path, modo);
-		perror(NULL);
+		perror("sys_msg");
 		exit(1);
 	}
 	
@@ -85,7 +85,7 @@ int tam_archivo(FILE *arch) {
 	
 	if (fstat(filedes, &datos) == -1) {
 		fprintf(stderr, "tam_archivo(): Error obteniendo tamaño de archivo\n");
-		perror(NULL);
+		perror("sys_msg");
 		exit(1);
 	}
 	
@@ -141,7 +141,7 @@ void escribir_archivo(FILE *arch, char *nombre, int cbytes, int tam_bloque) {
 			fprintf(stderr, 
 					"escribir_archivo(): Error en escritura del archivo '%s'\n",
 					nombre);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 	}
@@ -181,7 +181,7 @@ void leer_archivo(FILE *arch, char *nombre, int cbytes, int tam_bloque) {
 		
 		if (bytes_actual == -1) {
 			fprintf(stderr, "leer_archivo(): Error leyendo el archivo '%s'\n", nombre);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 	}
@@ -249,7 +249,7 @@ void io_aleatorio(FILE *arch, char *nombre, int cant, int tam_bloque, int escrit
 		if (res == -1) {
 			fprintf(stderr, "io_aleatorio(): Error de %s en archivo '%s'\n",
 					IO_OPER, nombre);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 	}
@@ -274,7 +274,7 @@ void borrar_archivo(char *dir, int narch, char *patron) {
 		if (tmp == -1) {
 			fprintf(stderr, "borrar_archivo(): Error en borrado de archivo '%s'\n",
 					path_buff);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 	}
@@ -292,7 +292,7 @@ void crear_directorio(char *path, char *dirname, int cantidad) {
 		if (result == -1) {
 			fprintf(stderr, "crear_directorio(): Error al crear directorio '%s'\n",
 					 dirname);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 	}
@@ -308,7 +308,7 @@ void crear_un_directorio(char *path, char *dirname) {
 	if (result == -1) {
 		fprintf(stderr, "crear_directorio(): Error al crear directorio '%s'\n",
 				 dirname);
-		perror(NULL);
+		perror("sys_msg");
 		exit(1);
 	}
 
@@ -326,7 +326,7 @@ void borrar_directorio(char *path, char *dirname, int cantidad) {
 		if (result == -1) {
 			fprintf(stderr, "crear_directorio(): Error al crear directorio '%s'\n",
 					 dirname);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 	}
@@ -344,7 +344,7 @@ void porcentaje_fragmentacion(char *path, frag_result *resultado) {
 	
 	if ((directorio = opendir(path)) == NULL) {
 		fprintf(stderr, "Error al abrir directorio '%s'\n", path);
-		perror(NULL);
+		perror("sys_msg");
 		exit(1);
 	}
 	
@@ -353,7 +353,7 @@ void porcentaje_fragmentacion(char *path, frag_result *resultado) {
 		
 		if (stat(buffer, &info) == -1) {
 			fprintf(stderr, "Error al obtener informacion de '%s'\n", buffer);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 		
@@ -370,7 +370,7 @@ void porcentaje_fragmentacion(char *path, frag_result *resultado) {
 	
 	if (errno == EBADF) {
 		fprintf(stderr, "Error al leer directorio '%s'\n", path);
-		perror(NULL);
+		perror("sys_msg");
 		exit(1);
 	}
 	
