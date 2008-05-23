@@ -106,7 +106,6 @@ void crear_archivo(char *dir, int narch, int cbytes, int tam_bloque, char *patro
 	for (i=0; i < narch; i++) {
 		sprintf(path_buff, "%s%s-%d", dir, patron, i);
 		
-		printf("Creando el archivo '%s'...\n", path_buff);
 		tmp = abrir_archivo(path_buff, "w");
 		
 		if (cbytes > 0)
@@ -268,7 +267,6 @@ void borrar_archivo(char *dir, int narch, char *patron) {
 	for (i=0; i < narch; i++) {
 		sprintf(path_buff, "%s%s-%d", dir, patron, i);
 		
-		printf("Creando el archivo '%s'...\n", path_buff);
 		tmp = remove(path_buff);
 		
 		if (tmp == -1) {
