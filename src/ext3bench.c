@@ -20,7 +20,6 @@ char PATH[PATH_BUFF_SIZE + 1];
 //sub-directorios de trabajo
 char mLectDir[PATH_BUFF_SIZE + 1];
 char mEscrDir[PATH_BUFF_SIZE + 1];
-char mLect2Dir[PATH_BUFF_SIZE + 1];
 char mDirsDir[PATH_BUFF_SIZE + 1];
 char mFragDir[PATH_BUFF_SIZE + 1];
 
@@ -42,13 +41,11 @@ int main(int argc, char **argv){
 	// Creacion de los directorios de trabajo.
 	crear_un_directorio(PATH, "mLect");
 	crear_un_directorio(PATH, "mEscr");
-	crear_un_directorio(PATH, "mLect2");
 	crear_un_directorio(PATH, "mDirs");
 	crear_un_directorio(PATH, "mFrag");
 
 	sprintf(mLectDir,  "%s%s", PATH, "mLect/");
 	sprintf(mEscrDir,  "%s%s", PATH, "mEscr/");
-	sprintf(mLect2Dir, "%s%s", PATH, "mLect2/");
 	sprintf(mDirsDir,  "%s%s", PATH, "mDirs/");
 	sprintf(mFragDir,  "%s%s", PATH, "mFrag/");
 	
@@ -62,31 +59,36 @@ int main(int argc, char **argv){
 	//Ejecucion de las operaciones
 	//MLECT ##################################################################
 	printf("Operaciones de Lectura/Re-lectura Secuencial...\n");
+	fflush(stdout);
 	mLect(1000, IO_BUFF_SIZE * 1000, "patronlect", mLectDir, salida);
 	//########################################################################
 
 	
 	//MESCR ##################################################################
 	printf("Operaciones de Escritura Secuencial/Aleatoria...\n");
-	mEscr(500, 2000000, "patronescr", 5, mEscrDir, salida);
+	fflush(stdout);
+	mEscr(500, 2000000, "patronescr", 10, mEscrDir, salida);
 	//########################################################################
 
 	//MLECT2 #################################################################
 	// leer 2000 archivos de 2m, secuencial y aleatoriamente
 	printf("Operaciones de Lectura Secuencial/Aleatoria...\n");
-	mLect2(salida, mLect2Dir, "patronlect2", 2000, 2097152);
+	fflush(stdout);
+	mLect2(salida, mEscrDir, "patronescr", 500, 5120);
 	//########################################################################
 	
 
 	//MDIRs ##################################################################
 	// crear y borrar 100.000 directorios
 	printf("Operaciones de Creacion/Borrado de Directorios...\n");
-	mDirs(salida, mDirsDir, 100000);
+	fflush(stdout);
+	mDirs(salida, mDirsDir, 50000);
 	//########################################################################
 		
 	
 	//MFRAG ##################################################################
-	printf("Operaciones Fragmentacion...\n");
+	printf("Operaciones de Fragmentacion...\n");
+	fflush(stdout);
 	frag_result result_frag;
 	test_fragmentacion(mFragDir);
 	
@@ -100,8 +102,8 @@ int main(int argc, char **argv){
 	
 	t2 = tiempo_milis();
 	
-	// Escribimos el tiempo total
-	fprintf(salida, "Tiempo total: %lld milisegundos.\n", t2 - t1);
+	// Imprimimos el tiempo total
+	printf("Fin del test... %lld ms.\n", t2 - t1);
 	
 	// Cerramos el archivo de salida.
 	close_csvFile(salida);
