@@ -133,7 +133,7 @@ Básicamente, tenemos 2 escenarios de pruebas, para 2 sistemas de archivos con t
 
  _*Configuración Optimizada:*_
 {{{
-   mount -t ext3 -o journal=writeback commit=10 noatime /dev/sda2 /vol02
+   mount -t ext3 -o data=writeback commit=10 noatime /dev/sda2 /vol02
 }}}
 
 = Otras optimizaciones = 
