@@ -140,8 +140,8 @@ Básicamente, tenemos 2 escenarios de pruebas, para 2 sistemas de archivos con t
 
 En los siguientes enlaces, existen análisis más completos sobre diversas optimizaciones que se pueden realizar sobre el filesystem ext3. 
 
-* [http://wiki.archlinux.org/index.php/Ext3_Filesystem_Tips Ext3 Filesystem Tips]
-* [http://www.redhat.com/archives/ext3-users/2007-May/msg00009.html Otros Tips para el tunning de Ext3]
+ * [http://wiki.archlinux.org/index.php/Ext3_Filesystem_Tips Ext3 Filesystem Tips]
+ * [http://www.redhat.com/archives/ext3-users/2007-May/msg00009.html Otros Tips para el tunning de Ext3]
 
 = Hardware de Prueba =
 
