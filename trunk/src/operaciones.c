@@ -34,11 +34,11 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 	long long t1,t2;
 	
 	//OPERACION - crear "veces" archivos
-	printf("\n\tIniciando Creacion de %d arch de %d bytes. c1000A..\n", cant_archivos, tamanho);
+	printf("\tCreando %d arch de %d bytes. c1000A...", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
 	t2 = tiempo_milis();
-	printf("\tFin de Creacion\n");
+	printf("Fin\n");
 
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c1000A");
@@ -46,51 +46,40 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 	print_test_result(log, &res1);
 
 
-
 	//OPERACION  - leer los arch creados	
-	printf("\n\tIniciando lectura de %d arch. de %d bytes. l1000A...\n", cant_archivos, tamanho);
+	printf("\tLectura de %d arch. de %d bytes. l1000A...", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
-
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
 		FILE *tmparch = abrir_archivo(archcompleto, "r");
 		leer_archivo(tmparch, archcompleto, tamanho, IO_BUFF_SIZE);
 		fclose(tmparch);
 	}
 	t2 = tiempo_milis();
-	printf("\tFin de lectura\n");
-
+	printf("Fin\n");
 
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "l1000A");
 	res2.BLs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
 	print_test_result(log, &res2);
 
-
-
-
-
 	//OPERACION - RE-leer  los arch creados	
-	printf("\n\tIniciando re-lectura de %d arch. de %d bytes. rl1000A...\n", cant_archivos, tamanho);
+	printf("\tRe-lectura de %d arch. de %d bytes. rl1000A...", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
-
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
 		FILE *tmparch = abrir_archivo(archcompleto, "r");
 		leer_archivo(tmparch, archcompleto, tamanho, IO_BUFF_SIZE);
 		fclose(tmparch);
 	}
 	t2 = tiempo_milis();
-	printf("\tFin re-lectura.\n");
+	printf("Fin\n");
 
 	result_t res3 = {0};
 	sprintf(res3.testId, "%s", "rl1000A");
 	res3.BLs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
 	print_test_result(log, &res3);
-
 }
-
-
 
 /**
  * MESCR
@@ -108,44 +97,34 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 	int i = 0;
 
 	//OPERACION - crear "cant_archivos" archivos
-	printf("\n\tIniciando creacion de %d arch. de %d bytes. rl1000A...\n", cant_archivos, tamanho);
+	printf("\tCreacion de %d arch. de %d bytes. rl1000A...", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	crear_archivo(subdir, cant_archivos, tamanho, IO_BUFF_SIZE, patron_archivos);
 	t2 = tiempo_milis();
-	printf("\tFin creacion.\n");
+	printf("Fin\n");
 
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c2000A2m");
 	res1.BEs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
 	print_test_result(log, &res1);	
 
-
-
-
-
 	//OPERACION - RE-escritura aleatoria de los arch creados	
-	printf("\n\tIniciando escritura aleatoria de %d arch. de %d bytes. rl1000A...\n", cant_archivos, tamanho);
+	printf("\tEscritura aleatoria de %d arch. de %d bytes. rl1000A...", cant_archivos, tamanho);
 	t1 = tiempo_milis();
 	for(i=0; i<cant_archivos; i++){
-
 		sprintf(archcompleto, "%s%s-%d",subdir, patron_archivos, i );
 		FILE *tmparch = abrir_archivo(archcompleto, "r+");
 		io_aleatorio(tmparch, archcompleto, veces_aleatorio, IO_BUFF_SIZE,1);
 		fclose(tmparch);
-
 	}
 	t2 = tiempo_milis();
-	printf("\tFin escritura aleatoria.\n");
-
+	printf("Fin\n");
 
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "re2000A2m");
 	res2.BEs = (IO_BUFF_SIZE* veces_aleatorio ) / ((t2 - t1)/1000.0);
 	print_test_result(log, &res2);
-
 }
-
-
 
 /**
  * MLECT2
@@ -159,25 +138,22 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 
 	// Primero realizamos la prueba de Lectura Secuencial
 	sprintf(r.testId,"lNSeq");
-	printf("\n\tIniciando lectura secuencial de %d arch de %d bytes.\n", cant, cbytes);
+	printf("\tLectura secuencial de %d arch de %d bytes...", cant, cbytes);
 	MEDICION ( leer_N_secuencial(path,patron,cant,cbytes) );
-	printf("\n\tFin lectura secuencial.\n");
-
+	printf("Fin\n");
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL =  t3 / ( (double) cant);
 	print_test_result(output,&r);
 
 	sprintf(r.testId,"lNAleat");
-	printf("\n\tIniciando lectura aleatoria de %d arch de %d bytes.\n", cant, cbytes);
+	printf("\tLectura aleatoria de %d arch de %d bytes...", cant, cbytes);
 	MEDICION ( leer_N_aleatorio(path,patron,cant,cbytes) );
-	printf("\tFin lectura aleatoria.\n", cant, cbytes);
-
+	printf("Fin\n");
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
 	r.LL = t3 / ( (double) cant);
 	print_test_result(output,&r);
-
 }
 
 /*
@@ -197,13 +173,9 @@ void leer_N_secuencial(char *path, char *patron, int cant, int cbytes) {
 	// se verifican al inicio del benchmark
 
 	for (i = 0; i < cant; ++i) {
-
 		sprintf(path_buff, "%s%s-%d", path, patron, i);
-
 		fd = abrir_archivo(path_buff,"r");
-
 		leer_archivo(fd,path_buff,cbytes,IO_BUFF_SIZE);
-
 		fclose(fd);
 	}
 }
@@ -224,22 +196,15 @@ void leer_N_aleatorio(char *path, char *patron, int cant, int cbytes) {
 	// se verifican al inicio del benchmark
 
 	for (i = 0; i < cant; ++i) {
-
 		sprintf(path_buff, "%s%s-%d", path, patron, i);
-
 		fd = abrir_archivo(path_buff,"r");
-
+		
 		// siempre se trunca, por lo que nunca se lee más de cbytes
 		int cantidad = cbytes / IO_BUFF_SIZE;
-
 		io_aleatorio(fd,path_buff,cantidad,IO_BUFF_SIZE,0);
-
 		fclose(fd);
 	}
-
-
 }
-
 
 /* lS2000A2m: Leer 2000 archivos de 2m de forma secuencial.
  *  path  : full path del directorio donde se encuentra el archivo
@@ -258,15 +223,10 @@ void leer_2000_aleatorio(char *path, char *patron) {
 	leer_N_aleatorio(path,patron,2000,2097152);
 }
 
-
-
-
 /**
  * MDIR
  */
-
 void mDirs(FILE * output, char *path, int cant) {
-
 	result_t r = {0};      	/* estructura de resultados 		*/
 	long long t1;
 	long long t2; 
@@ -275,22 +235,20 @@ void mDirs(FILE * output, char *path, int cant) {
 	// Primero realizamos la prueba de Lectura Secuencial
 	sprintf(r.testId,"cNDir");
 	
-	printf("\n\tCreando %d directorios..\n", cant);
+	printf("\tCreando %d directorios...", cant);
 	MEDICION ( crear_N_directorios(path,cant) );
-	printf("\tFin crear directorio.\n");
+	printf("Fin\n");
 
 	r.tCD = ( t3 / ( (double) cant) );
 	print_test_result(output,&r);
 
 	sprintf(r.testId,"bNDir");
-	printf("\n\tBorrando %d directorios..\n", cant);
+	printf("\tBorrando %d directorios...", cant);
 	MEDICION ( borrar_N_directorios(path,cant) );
-	printf("\tFin borrar directorios.\n");
+	printf("Fin\n");
 
 	r.tBD = ( t3 / ( (double) t3) );
 	print_test_result(output,&r);
-
-	
 }
 
 void crear_N_directorios(char *path, int N) {
@@ -326,7 +284,6 @@ void borrar_N_directorios(char *path, int N) {
 
 // c10000D: Crear 100000 directorios bajo un directorio.
 void crear_100mil_directorios(char *path) {
-
 	int var = 0;
 	char path_buff[PATH_BUFF_SIZE + 1];
 
@@ -339,12 +296,10 @@ void crear_100mil_directorios(char *path) {
 		sprintf(path_buff, "%s%s-%d/", path, "testDir", var);		
 		crear_directorio(path_buff,"test",25000);
 	}
-
 }
 
 // b10000Dsup: Borrar el directorio que contiene los 10000 directorios.
 void borrar_100mil_directorios(char *path) {
-
 	int var = 0;
 	char path_buff[PATH_BUFF_SIZE + 1];
 
@@ -354,16 +309,12 @@ void borrar_100mil_directorios(char *path) {
 		borrar_directorio(path_buff,"test",25000);
 	}
 
-	borrar_directorio(path,"testDir",4);	
-
+	borrar_directorio(path,"testDir",4);
 }
-
-
 
 /**
  * MFRAG
  */
-
 void test_fragmentacion(char *path) {
 	char PATRON[] = "mix_frag";
 	char buffer[PATH_BUFF_SIZE + 1];
@@ -371,8 +322,11 @@ void test_fragmentacion(char *path) {
 	int i, j, CBYTES=600, tam;
 
 	// Crear archivos vacíos.
+	printf("\tCreando 1000 archivos vacios...");
 	crear_archivo(path, 1000, 0, 0, PATRON);
+	printf("Fin\n");
 
+	printf("\tEscribiendo 600 bytes en cada archivo (repetir 1000 veces)...");
 	// Escribir 600 bytes en cada archivo (repetir 1000 veces).
 	for (j=0; j < 1000; j++) {
 		for (i=0; i < 1000; i++) {
@@ -382,7 +336,9 @@ void test_fragmentacion(char *path) {
 			fclose(arch);
 		}
 	}
+	printf("Fin\n");
 
+	printf("\tTruncando cada archivo a la mitad de su longitud...");
 	// Truncar cada archivo a la mitad de su longitud
 	for (i=0; i < 1000; i++) {
 		sprintf(buffer, "%s%s-%d", path, PATRON, i);
@@ -393,13 +349,15 @@ void test_fragmentacion(char *path) {
 			fprintf(stderr, 
 					"test_fragmentacion(): Error al truncar '%s'",
 					buffer);
-			perror(NULL);
+			perror("sys_msg");
 			exit(1);
 		}
 
 		fclose(arch);
 	}
+	printf("Fin\n");
 
+	printf("\tAgregando 600 bytes en cada archivo (repetir 1000 veces)...");
 	// Agregar 600 bytes en cada archivo (repetir 1000 veces).
 	for (j=0; j < 1000; j++) {
 		for (i=0; i < 1000; i++) {
@@ -409,4 +367,5 @@ void test_fragmentacion(char *path) {
 			fclose(arch);
 		}
 	}
+	printf("Fin\n");
 }
