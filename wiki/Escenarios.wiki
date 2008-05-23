@@ -73,7 +73,7 @@ Básicamente, tenemos 2 escenarios de pruebas, para 2 sistemas de archivos con t
   Se construirán para las pruebas dos particiones diferentes, de la siguiente manera: 
 
 
-  *Particion 1:* 
+  _*Particion 1:*_ 
 {{{
      mke2fs -b 1024 -L vol01 -j
 
@@ -97,7 +97,7 @@ Básicamente, tenemos 2 escenarios de pruebas, para 2 sistemas de archivos con t
              1024001, 1990657, 2809857, 5120001, 5971969
 }}}
 
-  *Particion 2:* 
+  _*Particion 2:*_ 
 {{{
      mke2fs -b 4096 -L vol02 -j
 
@@ -124,21 +124,24 @@ Básicamente, tenemos 2 escenarios de pruebas, para 2 sistemas de archivos con t
 
 == Opciones de montado ==
 
- *Configuración Estándar:*
+ _*Configuración Estándar:*_
 {{{
    mount -t ext3 /dev/sda2 /vol02
 
    Por defecto, se usan las opciones journal=ordered, commit=5. 
 }}}
 
- *Configuración Optimizada:*
+ _*Configuración Optimizada:*_
 {{{
    mount -t ext3 -o journal=writeback commit=10 noatime /dev/sda2 /vol02
-
-   Por defecto, se usan las opciones journal=ordered, commit=5. 
 }}}
 
 = Otras optimizaciones = 
+
+En los siguientes enlaces, existen análisis más completos sobre diversas optimizaciones que se pueden realizar sobre el filesystem ext3. 
+
+* [http://wiki.archlinux.org/index.php/Ext3_Filesystem_Tips Ext3 Filesystem Tips]
+* [http://www.redhat.com/archives/ext3-users/2007-May/msg00009.html Otros Tips para el tunning de Ext3]
 
 = Hardware de Prueba =
 
