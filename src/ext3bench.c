@@ -25,6 +25,8 @@ char mDirsDir[PATH_BUFF_SIZE + 1];
 char mFragDir[PATH_BUFF_SIZE + 1];
 
 int main(int argc, char **argv){
+	long long t1, t2;
+	
 	if(argc != 2){
 		fprintf(stderr, "Se debe pasar el directorio de trabajo\n");
 		exit(1);
@@ -33,7 +35,6 @@ int main(int argc, char **argv){
 	// Configuramos el directorio de trabajo.
 	sprintf(PATH, "%s%s", argv[1], verificar_barra_final(argv[1]));
 	verificar_longitud_path(PATH);
-	printf("En este PATH trabajaremos %s\n", PATH);
 	
 	// Cargamos el buffer de salida.
 	cargar_buffer(OUTPUT_BUFFER, IO_BUFF_SIZE);
@@ -51,58 +52,56 @@ int main(int argc, char **argv){
 	sprintf(mDirsDir,  "%s%s", PATH, "mDirs/");
 	sprintf(mFragDir,  "%s%s", PATH, "mFrag/");
 	
+	printf("Directorio de trabajo configurando en '%s'...\n", PATH);
+	
 	// Abrimos el archivo de salida.
 	FILE *salida = open_csvFile("./salida.csv");
+	
+	t1 = tiempo_milis();
 
 	//Ejecucion de las operaciones
 	//MLECT ##################################################################
+	printf("Operaciones de Lectura/Re-lectura Secuencial...\n");
 	mLect(1000, IO_BUFF_SIZE * 1000, "patronlect", mLectDir, salida);
 	//########################################################################
 
 	
 	//MESCR ##################################################################
+	printf("Operaciones de Escritura Secuencial/Aleatoria...\n");
 	mEscr(500, 2000000, "patronescr", 5, mEscrDir, salida);
 	//########################################################################
 
 	//MLECT2 #################################################################
 	// leer 2000 archivos de 2m, secuencial y aleatoriamente
+	printf("Operaciones de Lectura Secuencial/Aleatoria...\n");
 	mLect2(salida,PATH, "patronlect2", 2000, 2097152);
 	//########################################################################
 	
 
 	//MDIRs ##################################################################
 	// crear y borrar 100.000 directorios
+	printf("Operaciones de Creacion/Borrado de Directorios...\n");
 	mDirs(salida,PATH, 100000);
 	//########################################################################
 		
 	
 	//MFRAG ##################################################################
-	frag_result result_frag[5];
+	printf("Operaciones Fragmentacion...\n");
+	frag_result result_frag;
 	test_fragmentacion(mFragDir);
 	
 	// Calculamos la fragmentacion de cada directorio.
-	porcentaje_fragmentacion(mLectDir,  &result_frag[1]);
-	porcentaje_fragmentacion(mLect2Dir, &result_frag[2]);
-	porcentaje_fragmentacion(mEscrDir,  &result_frag[3]);
-	porcentaje_fragmentacion(mFragDir,  &result_frag[4]);
+	porcentaje_fragmentacion(mFragDir,  &result_frag);
 	
-	result_frag[0].porcentaje = (result_frag[1].porcentaje +
-								 result_frag[2].porcentaje +
-								 result_frag[3].porcentaje +
-								 result_frag[4].porcentaje) / 4;
-	
-	result_frag[0].minimo = min(result_frag[1].minimo, min(result_frag[2].minimo,
-							min(result_frag[3].minimo, result_frag[4].minimo)));
-	
-	result_frag[0].cant_arch = result_frag[1].cant_arch +
-							   result_frag[2].cant_arch +
-							   result_frag[3].cant_arch +
-							   result_frag[4].cant_arch;
-	
-	result_t r = {"mFrag", 0, 0, 0, 0, 0, 0, result_frag[0]};
+	result_t r = {"mFrag", 0, 0, 0, 0, 0, 0, result_frag};
 	
 	print_test_result(salida, &r);
 	//########################################################################
+	
+	t2 = tiempo_milis();
+	
+	// Escribimos el tiempo total
+	fprintf(salida, "Tiempo total: %lld milisegundos.\n", t2 - t1);
 	
 	// Cerramos el archivo de salida.
 	close_csvFile(salida);
