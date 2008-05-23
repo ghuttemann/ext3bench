@@ -190,6 +190,7 @@ void io_aleatorio(FILE *arch, char *nombre, int cant, int tam_bloque, int escrit
 	int tam_arch, max_offset, i, pos, res;
 	int filedes = fileno(arch);
 	char *buffer = NULL;
+	char operacion[10];
 	
 	/*
 	 * El tamaño de bloque no puede
@@ -213,20 +214,11 @@ void io_aleatorio(FILE *arch, char *nombre, int cant, int tam_bloque, int escrit
 	 * sea de lectura o escritura.
 	 */
 	if (escritura) {
-		#define IO_FUNC write
-		#define IO_OPER "escritura"
-		
+		sprintf(operacion, "escritura");
 		buffer  = OUTPUT_BUFFER;
 	}
 	else {
-		#ifndef IO_FUNC
-			#define IO_FUNC read
-		#endif
-		
-		#ifndef IO_OPER
-			#define IO_OPER "lectura"
-	    #endif
-		
+		sprintf(operacion, "lectura");
 		buffer  = INPUT_BUFFER;
 	}
 	
@@ -242,12 +234,17 @@ void io_aleatorio(FILE *arch, char *nombre, int cant, int tam_bloque, int escrit
 		fseek(arch, pos, SEEK_SET);
 		
 		// Realizamos la operación de E/S
-		res = IO_FUNC(filedes, buffer, tam_bloque);
+		if (escritura) {
+			res = write(filedes, buffer, tam_bloque);
+		}
+		else {
+			res = read(filedes, buffer, tam_bloque);
+		}
 		
 		// Verificamos error
 		if (res == -1) {
 			fprintf(stderr, "io_aleatorio(): Error de %s en archivo '%s'\n",
-					IO_OPER, nombre);
+					operacion, nombre);
 			perror("sys_msg");
 			exit(1);
 		}
