@@ -1,0 +1,24 @@
+#summary - Escenarios de Prueba donde se correrá el Benchmark.
+
+= Introducción =
+
+Se presenta en esta página los 4 escenarios de pruebas distintos que se evaluarán con este benchmark. 
+
+= Parámetros a variar  = 
+
+  # *Tamaño del Bloque (pTB):* tiene influencia fundamentalmente en las lecturas. Cómo no se puede variar online, se probará con el valor máximo (4Kb) y con el valor mínimo (1Kb)
+  # *Nivel de journaling (pNJ):* Influye sobre todos en las escrituras. Se trata del nivel con el que las transacciones del filesystem serán protegidas para la recuperación, a través del archivo de journal.
+{{{ 
+     tune2fs: # tune2fs -O has_journal -o journal_data /dev/hdXY
+}}}
+  # *Sync Interval (pSI):* intervalo de tiempo entre cada sincronización del journal con los archivos reales. Se puede cambiar al montar el sistema de archivos utilizando -o commit=Nsec.  A mayores valores de tiempo, se mejora el rendimiento porque se reduce la sobrecarga de operaciones del sistema de archivos, sin embargo, se pierde en confiabilidad ante fallos del sistema. Influye en operaciones de escritura
+  # *Eliminar la actualización del access time (pAT):* influye en lecturas. Consiste en la actualización de este atributo ante cada acceso al archivo.
+{{{
+Se puede manipular editando /etc/fstab con lo siguiente: 
+    /dev/hda1 / ext3 defaults, errors=remount-ro, noatime, auto, rw, dev, exec, suid, nouser, data=writeback 0 1
+}}}
+
+= Los Escenarios =
+
+
+= Hardware de Prueba =
