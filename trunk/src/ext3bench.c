@@ -74,14 +74,14 @@ int main(int argc, char **argv){
 	//MLECT2 #################################################################
 	// leer 2000 archivos de 2m, secuencial y aleatoriamente
 	printf("Operaciones de Lectura Secuencial/Aleatoria...\n");
-	mLect2(salida,PATH, "patronlect2", 2000, 2097152);
+	mLect2(salida, mLect2Dir, "patronlect2", 2000, 2097152);
 	//########################################################################
 	
 
 	//MDIRs ##################################################################
 	// crear y borrar 100.000 directorios
 	printf("Operaciones de Creacion/Borrado de Directorios...\n");
-	mDirs(salida,PATH, 100000);
+	mDirs(salida, mDirsDir, 100000);
 	//########################################################################
 		
 	
