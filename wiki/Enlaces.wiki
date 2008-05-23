@@ -1,0 +1,17 @@
+#summary Lista de enlaces interesantes
+
+= Introduction =
+
+Lista de enlaces interesantes en los cuales encontramos alguna u información útil para la realización de este trabajo.
+
+
+= Enlaces =
+
+ * [http://linuxplanet.com/linuxplanet/reports/4136/1/ Datos introductorios sobre ext3]
+ * [http://wiki.archlinux.org/index.php/Ext3_Filesystem_Tips Wiki con Tips para tunear ext3]
+ * [http://www.zip.com.au/~akpm/linux/ext3/ext3-usage.html Using the ext3 filesystem in 2.4 kernels]
+ * [http://en.wikipedia.org/wiki/Ext3 Ext3 en Wikipedia]
+ * [http://batleth.sapienti-sat.org/projects/FAQs/ext3-faq.html Ext3 FAQ]
+ * [http://homepage.smc.edu/morgan_david/cs40/analyze-ext2.htm Análisis de ext2]
+ * [http://en.wikipedia.org/wiki/Journaling_file_system Journaling File System]
+ * [http://www.redhat.com/archives/ext3-users/2007-May/msg00009.html Tips para tunear ext3]
