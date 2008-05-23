@@ -43,6 +43,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c1000A");
 	res1.BEs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	res1.LE = ((t2 - t1)/1000.0) / cant_archivos;
 	print_test_result(log, &res1);
 
 
@@ -61,6 +62,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "l1000A");
 	res2.BLs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	res2.LL = ((t2 - t1)/1000.0) / cant_archivos;
 	print_test_result(log, &res2);
 
 	//OPERACION - RE-leer  los arch creados	
@@ -78,6 +80,7 @@ void mLect(int cant_archivos, int tamanho, char * patron_archivos, char * subdir
 	result_t res3 = {0};
 	sprintf(res3.testId, "%s", "rl1000A");
 	res3.BLs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	res3.LL = ((t2 - t1)/1000.0) / cant_archivos;
 	print_test_result(log, &res3);
 }
 
@@ -106,6 +109,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 	result_t res1 = {0};
 	sprintf(res1.testId, "%s", "c2000A2m");
 	res1.BEs = (tamanho * cant_archivos ) / ((t2 - t1)/1000.0);
+	res1.LE = ((t2 - t1)/1000.0) / cant_archivos;
 	print_test_result(log, &res1);	
 
 	//OPERACION - RE-escritura aleatoria de los arch creados	
@@ -123,6 +127,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "re2000A2m");
 	res2.BEs = (IO_BUFF_SIZE* veces_aleatorio ) / ((t2 - t1)/1000.0);
+	res2.LE = ((t2 - t1)/1000.0) / cant_archivos;
 	print_test_result(log, &res2);
 }
 
@@ -143,7 +148,7 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 	printf("Fin\n");
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
-	r.LL =  t3 / ( (double) cant);
+	r.LL =  (t3 / 1000.0) / ( (double) cant);
 	print_test_result(output,&r);
 
 	sprintf(r.testId,"lNAleat");
@@ -152,7 +157,7 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 	printf("Fin\n");
 
 	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
-	r.LL = t3 / ( (double) cant);
+	r.LL = (t3 / 1000.0)/ ( (double) cant);
 	print_test_result(output,&r);
 }
 
@@ -239,7 +244,7 @@ void mDirs(FILE * output, char *path, int cant) {
 	MEDICION ( crear_N_directorios(path,cant) );
 	printf("Fin\n");
 
-	r.tCD = ( t3 / ( (double) cant) );
+	r.tCD = ( (t3 / 1000.0) / ( (double) cant) );
 	print_test_result(output,&r);
 
 	sprintf(r.testId,"bNDir");
@@ -247,7 +252,7 @@ void mDirs(FILE * output, char *path, int cant) {
 	MEDICION ( borrar_N_directorios(path,cant) );
 	printf("Fin\n");
 
-	r.tBD = ( t3 / ( (double) t3) );
+	r.tBD = ( (t3 / 1000.0) / ( (double) t3) );
 	print_test_result(output,&r);
 }
 
