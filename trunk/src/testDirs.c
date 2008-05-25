@@ -7,7 +7,6 @@
 #include "operaciones.h"
 
 int main_(int argc, char **argv) {
-	
 	char *dirname = "testDir";
 	char *path = "/tmp/ext3bench/";
 	
