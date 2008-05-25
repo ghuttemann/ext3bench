@@ -1,0 +1,20 @@
+Operaciones de Lectura/Re-lectura Secuencial...
+        Creando 1000 arch de 512000 bytes. c1000A...15711 ms.
+        Lectura de 1000 arch. de 512000 bytes. l1000A...1279 ms.
+        Re-lectura de 1000 arch. de 512000 bytes. rl1000A...1274 ms.
+Operaciones de Escritura Secuencial/Aleatoria...
+        Creacion de 500 arch. de 2000000 bytes. rl1000A...18169 ms.
+        Escritura aleatoria de 500 arch. de 2000000 bytes. rl1000A...10563 ms.
+Operaciones de Lectura Secuencial/Aleatoria...
+        Lectura secuencial de 500 arch de 5120 bytes...1775 ms.
+        Lectura aleatoria de 500 arch de 5120 bytes...10309 ms.
+Operaciones de Creacion/Borrado de Directorios...
+        Creando 50000 directorios...19652 ms.
+        Borrando 50000 directorios...4468 ms.
+Operaciones de Fragmentacion...
+        Creando 1000 archivos vacios...70 ms.
+        Escribiendo 600 bytes en cada archivo (repetir 1000 veces)...61426 ms.
+        Truncando cada archivo a la mitad de su longitud...30 ms.
+        Agregando 600 bytes en cada archivo (repetir 1000 veces)...37462 ms.
+Fin del test... 182864 ms.
+
