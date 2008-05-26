@@ -136,7 +136,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 
 	result_t res2 = {0};
 	sprintf(res2.testId, "%s", "re2000A2m");
-	res2.BEs = (IO_BUFF_SIZE* veces_aleatorio ) / ((t2 - t1)/1000.0);
+	res2.BEs = (IO_BUFF_SIZE* veces_aleatorio* cant_archivos) / ((t2 - t1)/1000.0);
 	res2.LE = ((t2 - t1)/1000.0) / cant_archivos;
 	print_test_result(log, &res2);
 }
@@ -159,7 +159,7 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 	printf("%lld ms.\n", t2 - t1);
 	fflush(stdout);
 
-	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
+	r.BLs = ( (cbytes*cant) / ( (double) t3) ) * 1000;
 	r.LL =  (t3 / 1000.0) / ( (double) cant);
 	print_test_result(output,&r);
 
@@ -170,7 +170,7 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 	printf("%lld ms.\n", t2 - t1);
 	fflush(stdout);
 
-	r.BLs = ( cbytes / ( (double) t3) ) * 1000;
+	r.BLs = ( (cbytes*cant) / ( (double) t3) ) * 1000;
 	r.LL = (t3 / 1000.0)/ ( (double) cant);
 	print_test_result(output,&r);
 }
