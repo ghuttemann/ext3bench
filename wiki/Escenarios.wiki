@@ -145,4 +145,6 @@ En los siguientes enlaces, existen análisis más completos sobre diversas optim
 
 = Hardware de Prueba =
 
-ToDo
+ * Memoria: 1 GB
+ * Procesador: Intel (R) Pentium(R) 4 CPU 2.80GHz
+ * Disco Duro: MAXTOR IDE 80GB.
