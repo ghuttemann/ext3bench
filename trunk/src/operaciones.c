@@ -270,7 +270,8 @@ void mDirs(FILE * output, char *path, int cant) {
 	printf("%lld ms.\n", t2 - t1);
 	fflush(stdout);
 
-	r.tBD = ( (t3 / 1000.0) / ( (double) t3) );
+	r.tCD = 0;
+	r.tBD = ( (t3 / 1000.0) / ( (double) cant) );
 	print_test_result(output,&r);
 }
 
