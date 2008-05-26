@@ -42,23 +42,23 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
  * Wrapper de todas las operaciones de Lectura de este grupo
  * 
  */
-void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes);
+void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes, int tam);
 
 /*  Leer N archivos de manera secuencial
  * 
  *  path  : full path del directorio donde se encuentra el archivo
  *  patron: patron de nombre de los archivos.
  *  cant  : cantidad de archivos a leer 
- *  cbytes: cantidad bytes del archivos
+ *  tam   : cantidad bytes de cada archivo
  */
-void leer_N_secuencial(char *path, char *patron, int cant, int cbytes);
+void leer_N_secuencial(char *path, char *patron, int cant, int tam);
 
 /*  Leer N archivos de manera aleatoria
  * 
  *  path  : full path del directorio donde se encuentra el archivo
  *  patron: patron de nombre de los archivos.
  *  cant  : cantidad de archivos a leer 
- *  cbytes: cantidad bytes del archivos  
+ *  cbytes: cantidad bytes a leer aleatoriamente de cada archivo
  */
 void leer_N_aleatorio(char *path, char *patron, int cant, int cbytes);
 

@@ -144,7 +144,7 @@ void mEscr(int cant_archivos, int tamanho, char * patron_archivos, int veces_ale
 /**
  * MLECT2
  */
-void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
+void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes, int tam) {
 
 	result_t r = {0};      	/* estructura de resultados 		*/
 	long long t1;
@@ -155,11 +155,11 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
 	sprintf(r.testId,"lNSeq");
 	printf("\tLectura secuencial de %d arch de %d bytes...", cant, cbytes);
 	fflush(stdout);
-	MEDICION ( leer_N_secuencial(path,patron,cant,cbytes) );
+	MEDICION ( leer_N_secuencial(path,patron,cant,tam) );
 	printf("%lld ms.\n", t2 - t1);
 	fflush(stdout);
 
-	r.BLs = ( (cbytes*cant) / ( (double) t3) ) * 1000;
+	r.BLs = ( (tam*cant) / ( (double) t3) ) * 1000;
 	r.LL =  (t3 / 1000.0) / ( (double) cant);
 	print_test_result(output,&r);
 
@@ -181,9 +181,9 @@ void mLect2(FILE * output,char *path, char *patron, int cant, int cbytes) {
  *  path  : full path del directorio donde se encuentra el archivo
  *  patron: patron de nombre de los archivos.
  *  cant  : cantidad de archivos a leer 
- *  cbytes: cantidad bytes del archivos
+ *  tam   : cantidad bytes de cada archivo
  */
-void leer_N_secuencial(char *path, char *patron, int cant, int cbytes) {
+void leer_N_secuencial(char *path, char *patron, int cant, int tam) {
 	int i=0;
 	char path_buff[PATH_BUFF_SIZE + 1];
 	FILE *fd;
@@ -194,7 +194,7 @@ void leer_N_secuencial(char *path, char *patron, int cant, int cbytes) {
 	for (i = 0; i < cant; ++i) {
 		sprintf(path_buff, "%s%s-%d", path, patron, i);
 		fd = abrir_archivo(path_buff,"r");
-		leer_archivo(fd,path_buff,cbytes,IO_BUFF_SIZE);
+		leer_archivo(fd,path_buff,tam,IO_BUFF_SIZE);
 		fclose(fd);
 	}
 }
@@ -204,7 +204,7 @@ void leer_N_secuencial(char *path, char *patron, int cant, int cbytes) {
  *  path  : full path del directorio donde se encuentra el archivo
  *  patron: patron de nombre de los archivos.
  *  cant  : cantidad de archivos a leer 
- *  cbytes: cantidad bytes del archivos (debe ser múliplo de IO_BUFF_SIZE)  
+ *  cbytes: cantidad bytes a leer aleatoriamente de cada archivo
  */
 void leer_N_aleatorio(char *path, char *patron, int cant, int cbytes) {
 	int i=0;
