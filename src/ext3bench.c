@@ -75,7 +75,7 @@ int main(int argc, char **argv){
 	// leer 2000 archivos de 2m, secuencial y aleatoriamente
 	printf("Operaciones de Lectura Secuencial/Aleatoria...\n");
 	fflush(stdout);
-	mLect2(salida, mEscrDir, "patronescr", 500, 5120);
+	mLect2(salida, mEscrDir, "patronescr", 500, 5120, 2000000);
 	//########################################################################
 	
 
