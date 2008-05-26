@@ -31,9 +31,9 @@ void print_header(FILE *csvFile, param_t *p) {
 }
 
 void print_test_result(FILE *csvFile, result_t *r) {
-	fprintf(csvFile,"%s,%f,%f,%f,%f,%f,%f,%f,%f,%d\n", 
+	fprintf(csvFile,"%s,%f,%f,%f,%f,%f,%f,%f,%d\n", 
 			r->testId, r->BEs, r->BLs, r->LE, r->LL, r->tCD, r->tBD, 
-			r->PF.porcentaje, r->PF.minimo, r->PF.cant_arch);
+			r->PF.porcentaje, r->PF.cant_arch);
 	
 	fflush(csvFile);
 	
