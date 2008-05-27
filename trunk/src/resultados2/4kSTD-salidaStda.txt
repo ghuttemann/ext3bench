@@ -1,0 +1,20 @@
+Directorio de trabajo configurando en '/home/cparra/ext3bench/'...
+Operaciones de Lectura/Re-lectura Secuencial...
+	Creando 1000 arch de 512000 bytes. c1000A...55056 ms.
+	Lectura de 1000 arch. de 512000 bytes. l1000A...8083 ms.
+	Re-lectura de 1000 arch. de 512000 bytes. rl1000A...8152 ms.
+Operaciones de Escritura Secuencial/Aleatoria...
+	Creacion de 500 arch. de 2000000 bytes. rl1000A...103405 ms.
+	Escritura aleatoria de 500 arch. de 2000000 bytes. rl1000A...4701 ms.
+Operaciones de Lectura Secuencial/Aleatoria...
+	Lectura secuencial de 500 arch de 5120 bytes...29763 ms.
+	Lectura aleatoria de 500 arch de 5120 bytes...1260 ms.
+Operaciones de Creacion/Borrado de Directorios...
+	Creando 50000 directorios...34980 ms.
+	Borrando 50000 directorios...16562 ms.
+Operaciones de Fragmentacion...
+	Creando 1000 archivos vacios...418 ms.
+	Escribiendo 600 bytes en cada archivo (repetir 1000 veces)...412462 ms.
+	Truncando cada archivo a la mitad de su longitud...297 ms.
+	Agregando 600 bytes en cada archivo (repetir 1000 veces)...293146 ms.
+Fin del test... 968500 ms.
