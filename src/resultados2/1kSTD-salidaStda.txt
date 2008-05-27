@@ -1,0 +1,20 @@
+Directorio de trabajo configurando en '/mnt/test/'...
+Operaciones de Lectura/Re-lectura Secuencial...
+	Creando 1000 arch de 512000 bytes. c1000A...79590 ms.
+	Lectura de 1000 arch. de 512000 bytes. l1000A...8217 ms.
+	Re-lectura de 1000 arch. de 512000 bytes. rl1000A...8228 ms.
+Operaciones de Escritura Secuencial/Aleatoria...
+	Creacion de 500 arch. de 2000000 bytes. rl1000A...163953 ms.
+	Escritura aleatoria de 500 arch. de 2000000 bytes. rl1000A...13897 ms.
+Operaciones de Lectura Secuencial/Aleatoria...
+	Lectura secuencial de 500 arch de 5120 bytes...57384 ms.
+	Lectura aleatoria de 500 arch de 5120 bytes...3879 ms.
+Operaciones de Creacion/Borrado de Directorios...
+	Creando 50000 directorios...177311 ms.
+	Borrando 50000 directorios...24150 ms.
+Operaciones de Fragmentacion...
+	Creando 1000 archivos vacios...581 ms.
+	Escribiendo 600 bytes en cada archivo (repetir 1000 veces)...409892 ms.
+	Truncando cada archivo a la mitad de su longitud...291 ms.
+	Agregando 600 bytes en cada archivo (repetir 1000 veces)...336119 ms.
+Fin del test... 1283733 ms.
