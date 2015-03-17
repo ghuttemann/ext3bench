@@ -1,0 +1,1 @@
+Implementación de una serie de operaciones básicas, para medir el rendimiento del sistema de archivos ext3, luego de variar algunos parámetros importantes del mismo.
